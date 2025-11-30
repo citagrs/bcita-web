@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <!-- Círculo azul -->
+  <circle
+    cx="300"
+    cy="300"
+    r="280"
+    fill="none"
+    stroke="#0066B3"
+    stroke-width="40"
+  />
+
+  <!-- Letra B centrada -->
+  <text
+    x="50%"
+    y="50%"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="260"
+    font-weight="700"
+    fill="#0066B3"
+  >
+    B
+  </text>
+</svg>
