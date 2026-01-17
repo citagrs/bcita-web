@@ -4,7 +4,6 @@ import "./globals.css";
 
 // Componentes
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import ChatWidget from "../components/ChatWidget";
 
 
@@ -46,8 +45,7 @@ export default function RootLayout({
         <ChatWidget />
 
 
-        {/* FOOTER */}
-        <Footer />
+
       </body>
     </html>
   );

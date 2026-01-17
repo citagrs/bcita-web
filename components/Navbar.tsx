@@ -27,8 +27,19 @@ export default function Navbar() {
         {/* Desktop menu */}
         <ul className="hidden md:flex items-center gap-10 text-gray-700 font-medium">
           <li><a href="#servicios" className="hover:text-[#0066B3]">Servicios</a></li>
-          <li><a href="#por-que" className="hover:text-[#0066B3]">¿Por qué B-cita?</a></li>
+          <li><a href="#resultados" className="hover:text-[#0066B3]">Resultados</a></li>
           <li><a href="#contacto" className="hover:text-[#0066B3]">Contacto</a></li>
+          <li>
+            <a 
+              href="https://beacons.ai/b_cita/mediakit" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-[#0066B3]"
+            >
+              Portafolio de Servicios
+            </a>
+          </li>
+
         </ul>
 
         {/* Botón CTA */}
@@ -55,6 +66,17 @@ export default function Navbar() {
             <li><a href="#servicios" onClick={() => setOpen(false)}>Servicios</a></li>
             <li><a href="#por-que" onClick={() => setOpen(false)}>¿Por qué B-cita?</a></li>
             <li><a href="#contacto" onClick={() => setOpen(false)}>Contacto</a></li>
+            <li>
+              <a
+                href="https://beacons.ai/b_cita/mediakit"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+              >
+    Portafolio de Servicios
+  </a>
+</li>
+
           </ul>
         </div>
       )}
