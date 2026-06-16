@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Tratamiento de Datos Personales | BCITA Soluciones</title>
+  <meta name="description" content="Política de Tratamiento de Datos Personales de BCITA Soluciones y Automatización S.A.S. — Ley 1581 de 2012." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" href="/b-cita1.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/b-cita1.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #0066B3;
+      --blue-dark:   #003862;
+      --blue-light:  #dbeafe;
+      --emerald:     #059669;
+      --emerald-lt:  #d1fae5;
+      --text:        #111827;
+      --text-mid:    #4B5563;
+      --text-soft:   #9CA3AF;
+      --bg:          #F9FAFB;
+      --white:       #ffffff;
+      --border:      #E5E7EB;
+      --sh-md:  0 4px 6px -1px rgba(0,0,0,.10), 0 2px 4px -1px rgba(0,0,0,.06);
+      --sh-lg:  0 10px 15px -3px rgba(0,0,0,.10), 0 4px 6px -2px rgba(0,0,0,.05);
+      --radius:    12px;
+      --radius-lg: 20px;
+      --font: 'Segoe UI', Arial, Helvetica, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: underline; }
+    a:hover { color: var(--blue-dark); }
+    img { display: block; max-width: 100%; }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    .site-header {
+      background: var(--blue-dark);
+      padding: 1.25rem 1.5rem;
+    }
+    .site-header .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .site-header img { height: 38px; width: auto; }
+    .header-back {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    .header-back:hover { color: #fff; }
+
+    /* ── HERO DE LA PÁGINA ──────────────────────────────── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #0a3d6e 100%);
+      padding: 3.5rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: .75rem;
+      line-height: 1.15;
+    }
+    .page-hero .meta {
+      color: #94a3b8;
+      font-size: .875rem;
+    }
+    .page-hero .meta strong { color: #cbd5e1; }
+
+    /* ── LAYOUT PRINCIPAL ───────────────────────────────── */
+    .main-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* ── ÍNDICE LATERAL ─────────────────────────────────── */
+    .toc {
+      position: sticky;
+      top: 2rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--sh-md);
+      border: 1px solid var(--border);
+    }
+    .toc-title {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-soft);
+      margin-bottom: .875rem;
+    }
+    .toc ol {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      counter-reset: toc;
+    }
+    .toc ol li { counter-increment: toc; }
+    .toc ol li a {
+      font-size: .82rem;
+      color: var(--text-mid);
+      text-decoration: none;
+      display: flex;
+      gap: 7px;
+      align-items: baseline;
+      transition: color .2s;
+      line-height: 1.4;
+    }
+    .toc ol li a::before {
+      content: counter(toc) ".";
+      color: var(--blue);
+      font-weight: 700;
+      font-size: .75rem;
+      flex-shrink: 0;
+    }
+    .toc ol li a:hover { color: var(--blue); }
+
+    /* ── ARTÍCULO ───────────────────────────────────────── */
+    article { min-width: 0; }
+
+    .policy-section {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2rem 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--sh-md);
+      border: 1px solid var(--border);
+      scroll-margin-top: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--bg);
+    }
+    .section-num {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-weight: 800;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .policy-section p {
+      font-size: .95rem;
+      color: var(--text-mid);
+      margin-bottom: .9rem;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section ul,
+    .policy-section ol {
+      margin: .5rem 0 .9rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+    .policy-section li {
+      font-size: .95rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: var(--emerald-lt);
+      border-left: 3px solid var(--emerald);
+      border-radius: 0 8px 8px 0;
+      padding: .875rem 1.1rem;
+      margin: .9rem 0;
+      font-size: .9rem;
+      color: #065f46;
+      line-height: 1.6;
+    }
+    .highlight-box strong { color: #064e3b; }
+
+    .info-box {
+      background: var(--blue-light);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: .875rem 1.1rem;
+      margin: .9rem 0;
+      font-size: .9rem;
+      color: #1e3a5f;
+      line-height: 1.6;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: .9rem;
+    }
+    .contact-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: .875rem 1rem;
+      border: 1px solid var(--border);
+    }
+    .contact-item .label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--text-soft);
+      margin-bottom: .25rem;
+    }
+    .contact-item .value {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .contact-item .value a {
+      color: var(--blue);
+    }
+
+    /* ── BADGE DE VIGENCIA ──────────────────────────────── */
+    .vigencia-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-dark);
+      color: #e2e8f0;
+      padding: .6rem 1rem;
+      border-radius: 8px;
+      font-size: .85rem;
+      margin-top: .75rem;
+    }
+    .vigencia-badge .dot {
+      width: 8px; height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: #050e1a;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .footer-wrap { max-width: 900px; margin: 0 auto; }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #1e293b;
+      margin-bottom: 1.25rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-brand img { height: 36px; width: auto; }
+    .footer-brand-info { line-height: 1.3; }
+    .footer-brand-name { font-size: .85rem; color: #e2e8f0; font-weight: 600; }
+    .footer-brand-nit  { font-size: .72rem; color: #475569; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .footer-links a { color: #64748b; text-decoration: none; font-size: .78rem; transition: color .2s; }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-bottom { font-size: .76rem; color: #475569; text-align: center; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .main-wrap {
+        grid-template-columns: 1fr;
+      }
+      .toc { position: static; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .policy-section { padding: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .page-hero { padding: 2.5rem 1.25rem 2rem; }
+      .main-wrap { padding: 2rem 1.1rem 4rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/">
+        <img src="/b-cita1.png" alt="BCITA Soluciones y Automatización" />
+      </a>
+      <a href="javascript:history.back()" class="header-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Volver
+      </a>
+    </div>
+  </header>
+
+  <!-- ── HERO ────────────────────────────────────────────── -->
+  <div class="page-hero">
+    <h1>Política de Tratamiento<br>de Datos Personales</h1>
+    <p class="meta">
+      <strong>BCITA Soluciones y Automatización S.A.S.</strong> &nbsp;·&nbsp;
+      NIT 902031908-7 &nbsp;·&nbsp;
+      Vigente desde: junio 2025
+    </p>
+  </div>
+
+  <!-- ── CONTENIDO ───────────────────────────────────────── -->
+  <div class="main-wrap">
+
+    <!-- Índice -->
+    <nav class="toc" aria-label="Tabla de contenido">
+      <p class="toc-title">Contenido</p>
+      <ol>
+        <li><a href="#responsable">Responsable del tratamiento</a></li>
+        <li><a href="#marco-legal">Marco legal</a></li>
+        <li><a href="#datos-recopilados">Datos que recopilamos</a></li>
+        <li><a href="#finalidades">Finalidades del tratamiento</a></li>
+        <li><a href="#derechos">Derechos del titular</a></li>
+        <li><a href="#procedimiento">Cómo ejercer sus derechos</a></li>
+        <li><a href="#transferencia">Transferencia de datos</a></li>
+        <li><a href="#seguridad">Medidas de seguridad</a></li>
+        <li><a href="#vigencia">Vigencia y cambios</a></li>
+      </ol>
+    </nav>
+
+    <!-- Artículo -->
+    <article>
+
+      <!-- 1 -->
+      <section class="policy-section" id="responsable">
+        <div class="section-header">
+          <span class="section-num">1</span>
+          <h2>Responsable del tratamiento</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="label">Razón social</div>
+            <div class="value">BCITA Soluciones y Automatización S.A.S.</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">NIT</div>
+            <div class="value">902031908-7</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Domicilio</div>
+            <div class="value">Fusagasugá, Cundinamarca, Colombia</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Correo electrónico</div>
+            <div class="value"><a href="mailto:soluciones@bcita.com.co">soluciones@bcita.com.co</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="label">WhatsApp</div>
+            <div class="value"><a href="https://wa.me/573024446047">302 444 6047</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Sitio web</div>
+            <div class="value"><a href="https://bcita.com.co">bcita.com.co</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="policy-section" id="marco-legal">
+        <div class="section-header">
+          <span class="section-num">2</span>
+          <h2>Marco legal</h2>
+        </div>
+        <p>
+          La presente política se adopta en cumplimiento de las siguientes normas de la República de Colombia:
+        </p>
+        <ul>
+          <li><strong>Ley 1581 de 2012</strong> — Ley de Protección de Datos Personales (Habeas Data)</li>
+          <li><strong>Decreto 1377 de 2013</strong> — Reglamentación parcial de la Ley 1581</li>
+          <li><strong>Decreto 1074 de 2015</strong> — Decreto Único Reglamentario del Sector Comercio</li>
+          <li><strong>Circular Externa 02 de 2015</strong> de la Superintendencia de Industria y Comercio</li>
+        </ul>
+        <div class="info-box">
+          El tratamiento de datos personales realizado por BCITA está inscrito en el Registro Nacional de Bases de Datos (RNBD) administrado por la Superintendencia de Industria y Comercio (SIC), conforme lo exige la ley.
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="policy-section" id="datos-recopilados">
+        <div class="section-header">
+          <span class="section-num">3</span>
+          <h2>Datos personales que recopilamos</h2>
+        </div>
+        <p>
+          BCITA recopila únicamente los datos necesarios para los fines descritos en esta política. Los datos que podemos tratar son:
+        </p>
+        <ul>
+          <li><strong>Datos de identificación:</strong> nombre completo o nombre de pila</li>
+          <li><strong>Datos de contacto:</strong> número de teléfono / WhatsApp, correo electrónico</li>
+          <li><strong>Datos del negocio:</strong> nombre del establecimiento comercial, sector económico</li>
+          <li><strong>Datos de interés comercial:</strong> servicios de interés seleccionados por el titular</li>
+          <li><strong>Datos de navegación:</strong> página desde la cual se realizó el contacto</li>
+        </ul>
+        <p>
+          BCITA <strong>no recopila</strong> datos sensibles (origen racial, datos de salud, orientación sexual, datos biométricos, creencias políticas o religiosas) ni datos de menores de edad.
+        </p>
+      </section>
+
+      <!-- 4 -->
+      <section class="policy-section" id="finalidades">
+        <div class="section-header">
+          <span class="section-num">4</span>
+          <h2>Finalidades del tratamiento</h2>
+        </div>
+        <p>Los datos personales recopilados serán utilizados exclusivamente para las siguientes finalidades:</p>
+        <ol>
+          <li>Contactar al titular por WhatsApp o correo electrónico para atender su solicitud de información o cotización de servicios</li>
+          <li>Enviar información sobre los servicios de BCITA que puedan ser de interés para el titular, siempre que éste haya otorgado autorización</li>
+          <li>Gestionar la relación comercial y el seguimiento de propuestas enviadas</li>
+          <li>Enviar comunicaciones sobre actualizaciones, nuevos servicios o promociones especiales relacionadas con los intereses del titular</li>
+          <li>Cumplir obligaciones legales, contables y tributarias derivadas de la prestación de servicios</li>
+          <li>Mejorar los servicios de BCITA mediante el análisis estadístico agregado y anonimizado de la demanda</li>
+        </ol>
+        <div class="highlight-box">
+          <strong>Importante:</strong> BCITA no utilizará sus datos para finalidades distintas a las aquí descritas sin obtener previamente una nueva autorización expresa del titular.
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="policy-section" id="derechos">
+        <div class="section-header">
+          <span class="section-num">5</span>
+          <h2>Derechos del titular</h2>
+        </div>
+        <p>
+          De conformidad con el artículo 8 de la Ley 1581 de 2012, el titular de los datos personales tiene los siguientes derechos:
+        </p>
+        <ul>
+          <li><strong>Conocer</strong> los datos personales que BCITA tiene sobre usted y para qué los usa</li>
+          <li><strong>Actualizar</strong> sus datos cuando estén desactualizados o incompletos</li>
+          <li><strong>Rectificar</strong> sus datos cuando sean inexactos</li>
+          <li><strong>Suprimir</strong> sus datos cuando no sean necesarios para la finalidad por la que fueron recopilados, o cuando haya vencido el período de vigencia</li>
+          <li><strong>Revocar la autorización</strong> otorgada para el tratamiento de sus datos en cualquier momento, sin efectos retroactivos</li>
+          <li><strong>Acceder gratuitamente</strong> a sus datos personales que hayan sido objeto de tratamiento</li>
+          <li><strong>Presentar quejas</strong> ante la Superintendencia de Industria y Comercio (SIC) cuando considere que sus derechos han sido vulnerados</li>
+        </ul>
+      </section>
+
+      <!-- 6 -->
+      <section class="policy-section" id="procedimiento">
+        <div class="section-header">
+          <span class="section-num">6</span>
+          <h2>Cómo ejercer sus derechos</h2>
+        </div>
+        <p>
+          Para ejercer cualquiera de los derechos descritos en la sección anterior, el titular puede contactar a BCITA a través de los siguientes canales:
+        </p>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="label">Correo electrónico</div>
+            <div class="value"><a href="mailto:soluciones@bcita.com.co">soluciones@bcita.com.co</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="label">WhatsApp</div>
+            <div class="value"><a href="https://wa.me/573024446047">302 444 6047</a></div>
+          </div>
+        </div>
+        <p style="margin-top: 1rem;">
+          La solicitud debe incluir: nombre completo del titular, descripción clara del derecho que desea ejercer, y datos de contacto para dar respuesta. BCITA atenderá la solicitud en los plazos establecidos por la ley:
+        </p>
+        <ul>
+          <li><strong>Consultas:</strong> 10 días hábiles, prorrogables por 5 días hábiles adicionales</li>
+          <li><strong>Reclamos:</strong> 15 días hábiles, prorrogables por 8 días hábiles adicionales</li>
+        </ul>
+        <div class="info-box">
+          Si BCITA no atiende su solicitud en los plazos indicados, usted puede presentar una queja directamente ante la <strong>Superintendencia de Industria y Comercio (SIC)</strong> en <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer">www.sic.gov.co</a>.
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="policy-section" id="transferencia">
+        <div class="section-header">
+          <span class="section-num">7</span>
+          <h2>Transferencia y transmisión de datos</h2>
+        </div>
+        <p>
+          BCITA <strong>no vende, alquila ni comparte</strong> los datos personales de sus titulares con terceros para fines comerciales propios de esos terceros.
+        </p>
+        <p>
+          Los datos podrán ser transmitidos únicamente a proveedores tecnológicos que actúen como encargados del tratamiento en nombre de BCITA, exclusivamente para prestar los servicios contratados. Dichos proveedores incluyen:
+        </p>
+        <ul>
+          <li>Plataformas de almacenamiento en la nube (Microsoft 365 / SharePoint)</li>
+          <li>Herramientas de automatización y flujos de trabajo (Power Automate)</li>
+          <li>Plataformas de mensajería empresarial (WhatsApp Business API)</li>
+        </ul>
+        <p>
+          Todos los proveedores tienen obligación contractual de tratar los datos conforme a las instrucciones de BCITA y a las leyes colombianas aplicables.
+        </p>
+      </section>
+
+      <!-- 8 -->
+      <section class="policy-section" id="seguridad">
+        <div class="section-header">
+          <span class="section-num">8</span>
+          <h2>Medidas de seguridad</h2>
+        </div>
+        <p>
+          BCITA implementa medidas técnicas, humanas y administrativas para proteger los datos personales contra pérdida, acceso no autorizado, divulgación, alteración o destrucción:
+        </p>
+        <ul>
+          <li>Almacenamiento en plataformas con cifrado en tránsito (HTTPS/TLS) y en reposo</li>
+          <li>Acceso restringido a los datos únicamente al personal autorizado</li>
+          <li>Uso de autenticación multifactor en los sistemas donde se almacenan datos</li>
+          <li>Revisión periódica de permisos y accesos</li>
+        </ul>
+        <p>
+          En caso de que ocurra una violación de seguridad que afecte los datos de los titulares, BCITA notificará a la Superintendencia de Industria y Comercio y a los titulares afectados dentro de los términos legales.
+        </p>
+      </section>
+
+      <!-- 9 -->
+      <section class="policy-section" id="vigencia">
+        <div class="section-header">
+          <span class="section-num">9</span>
+          <h2>Vigencia y cambios a esta política</h2>
+        </div>
+        <p>
+          Los datos personales se conservarán durante el tiempo que sea necesario para cumplir con las finalidades descritas en esta política o mientras subsista la relación comercial con el titular. Una vez cumplida la finalidad, los datos serán eliminados o anonimizados de forma segura.
+        </p>
+        <p>
+          BCITA se reserva el derecho de actualizar esta política cuando lo considere necesario por cambios normativos, tecnológicos o en los servicios prestados. Cualquier modificación sustancial será informada a los titulares con al menos 10 días hábiles de anticipación a través de los canales de comunicación disponibles.
+        </p>
+        <div class="vigencia-badge">
+          <span class="dot" aria-hidden="true"></span>
+          Política vigente desde el 1 de junio de 2025 &nbsp;·&nbsp; Versión 1.0
+        </div>
+      </section>
+
+    </article>
+  </div>
+
+  <!-- ── FOOTER ───────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/b-cita1.png" alt="BCITA" />
+          <div class="footer-brand-info">
+            <div class="footer-brand-name">BCITA Soluciones y Automatización S.A.S.</div>
+            <div class="footer-brand-nit">NIT 902031908-7 · Fusagasugá, Cundinamarca</div>
+          </div>
+        </div>
+        <nav class="footer-links">
+          <a href="mailto:soluciones@bcita.com.co">soluciones@bcita.com.co</a>
+          <a href="https://wa.me/573024446047" target="_blank" rel="noopener noreferrer">302 444 6047</a>
+          <a href="/">Sitio principal</a>
+        </nav>
+      </div>
+      <p class="footer-bottom">
+        &copy; 2025 BCITA Soluciones y Automatización S.A.S. &nbsp;·&nbsp; Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
