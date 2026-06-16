@@ -26,14 +26,12 @@ export default function Navbar() {
 
         {/* Desktop menu */}
         <ul className="hidden md:flex items-center gap-10 text-gray-700 font-medium">
-          <li><a href="/servicios/index.html" className="hover:text-[#0066B3]">Servicios</a></li>
+          <li><a href="#servicios" className="hover:text-[#0066B3]">Servicios</a></li>
           <li><a href="#resultados" className="hover:text-[#0066B3]">Resultados</a></li>
           <li><a href="#contacto" className="hover:text-[#0066B3]">Contacto</a></li>
           <li>
             <a 
-              href="https://beacons.ai/b_cita/mediakit" 
-              target="_blank" 
-              rel="noopener noreferrer"
+              href="/servicios/index.html"
               className="hover:text-[#0066B3]"
             >
               Portafolio de Servicios
@@ -63,7 +61,7 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-white border-t border-gray-200 px-6 py-4">
           <ul className="flex flex-col gap-4 text-gray-700 font-medium">
-            <li><a href="/servicios/index.html" onClick={() => setOpen(false)}>Servicios</a></li>
+            <li><a href="#servicios" onClick={() => setOpen(false)}>Servicios</a></li>
             <li><a href="#por-que" onClick={() => setOpen(false)}>¿Por qué B-cita?</a></li>
             <li><a href="#contacto" onClick={() => setOpen(false)}>Contacto</a></li>
             <li>
