@@ -1,6 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -14,7 +15,13 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-white text-xl mb-4">B-cita</h3>
+            <Image
+              src="/b-cita1.png"
+              alt="BCITA Soluciones y Automatización"
+              width={140}
+              height={140}
+              className="h-12 w-auto mb-4"
+            />
             <p className="text-gray-400 leading-relaxed">
               Automatizamos procesos para que tu empresa trabaje sola. Más tiempo para lo importante.
             </p>
