@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios de automatización y digitalización - BCITA Fusagasugá</title>
+  <meta name="description" content="Automatización de procesos, prospección B2B, CRM, páginas web e integraciones para empresas en Colombia. BCITA Soluciones y Automatización S.A.S." />
+  <meta name="keywords" content="automatización empresas Colombia, digitalización procesos, CRM Fusagasugá, prospección B2B, Power Automate Colombia, BCITA" />
+  <meta property="og:title" content="Servicios de automatización y digitalización | BCITA" />
+  <meta property="og:description" content="6 servicios de transformación digital para que tu empresa trabaje sola. Innovación real. Resultados medibles." />
+  <meta property="og:locale" content="es_CO" />
+  <link rel="canonical" href="https://bcita.com.co/servicios/" />
+  <link rel="icon" href="/b-cita1.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/b-cita1.png" />
+
+  <style>
+    /* ============================================================
+       RESET & VARIABLES — Sistema de diseño BCITA
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Paleta BCITA */
+      --blue:        #0066B3;
+      --blue-dark:   #003862;
+      --blue-light:  #dbeafe;
+      --blue-mid:    #1e40af;
+      --emerald:     #059669;
+      --emerald-lt:  #d1fae5;
+      --emerald-dk:  #047857;
+      --purple:      #7c3aed;
+      --purple-lt:   #ede9fe;
+      --orange:      #ea580c;
+      --orange-lt:   #fff7ed;
+      --teal:        #0d9488;
+      --teal-lt:     #ccfbf1;
+
+      /* Neutros */
+      --text:        #111827;
+      --text-mid:    #4B5563;
+      --text-soft:   #9CA3AF;
+      --bg:          #F9FAFB;
+      --white:       #ffffff;
+      --border:      #E5E7EB;
+
+      /* Sombras */
+      --sh-sm:  0 1px 3px rgba(0,0,0,.10), 0 1px 2px rgba(0,0,0,.06);
+      --sh-md:  0 4px 6px -1px rgba(0,0,0,.10), 0 2px 4px -1px rgba(0,0,0,.06);
+      --sh-lg:  0 10px 15px -3px rgba(0,0,0,.10), 0 4px 6px -2px rgba(0,0,0,.05);
+      --sh-xl:  0 20px 25px -5px rgba(0,0,0,.12), 0 10px 10px -5px rgba(0,0,0,.06);
+      --sh-2xl: 0 25px 50px -12px rgba(0,0,0,.25);
+
+      --radius:    12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font: 'Segoe UI', Arial, Helvetica, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       ANIMACIONES GLOBALES
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    @keyframes blob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(20px, -20px) scale(1.06); }
+      66%       { transform: translate(-15px, 12px) scale(0.95); }
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1;   }
+      50%       { opacity: .35; }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Patrón de cuadrícula animada para el hero */
+    @keyframes gridPulse {
+      0%, 100% { opacity: .04; }
+      50%       { opacity: .09; }
+    }
+
+    @keyframes radarPing {
+      0%   { transform: scale(1);   opacity: .6; }
+      100% { transform: scale(2.4); opacity: 0;  }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0);    }
+      50%       { transform: translateY(-8px); }
+    }
+
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    /* ── Reveal on scroll ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .10s; }
+    .reveal-d2 { transition-delay: .20s; }
+    .reveal-d3 { transition-delay: .30s; }
+    .reveal-d4 { transition-delay: .15s; }
+    .reveal-d5 { transition-delay: .25s; }
+    .reveal-d6 { transition-delay: .35s; }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229,231,235,.7);
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: .9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .navbar-logo img { height: 38px; width: auto; }
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .navbar-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: color .2s;
+    }
+    .navbar-links a:hover,
+    .navbar-links a.active { color: var(--blue); }
+    .navbar-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: white !important;
+      padding: .55rem 1.1rem;
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 600;
+      transition: background .2s, transform .2s;
+    }
+    .navbar-cta:hover {
+      background: var(--blue-dark) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       HERO — Patrón geométrico CSS puro
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: 80px;
+      background: linear-gradient(145deg, #060d1a 0%, #003862 40%, #071e11 80%, #0a0a1a 100%);
+    }
+
+    /* Cuadrícula CSS pura */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridPulse 4s ease-in-out infinite;
+    }
+
+    /* Blobs de fondo */
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(72px);
+      pointer-events: none;
+    }
+    .hero-blob-1 {
+      width: 520px; height: 520px;
+      top: -140px; right: -100px;
+      background: radial-gradient(circle, rgba(16,185,129,.20) 0%, transparent 70%);
+      animation: blob 9s ease-in-out infinite;
+    }
+    .hero-blob-2 {
+      width: 400px; height: 400px;
+      bottom: -120px; left: -80px;
+      background: radial-gradient(circle, rgba(0,102,179,.25) 0%, transparent 70%);
+      animation: blob 12s ease-in-out infinite 2s;
+    }
+    .hero-blob-3 {
+      width: 320px; height: 320px;
+      top: 50%; left: 45%;
+      background: radial-gradient(circle, rgba(124,58,237,.12) 0%, transparent 70%);
+      animation: blob 7s ease-in-out infinite 4s;
+    }
+
+    /* Nodos decorativos (tecnología) */
+    .hero-nodes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .node {
+      position: absolute;
+      width: 6px; height: 6px;
+      background: rgba(16,185,129,.5);
+      border-radius: 50%;
+    }
+    .node::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid rgba(16,185,129,.25);
+      animation: radarPing 3s ease-out infinite;
+    }
+    .node-1 { top: 18%; left: 8%;  animation: float 5s ease-in-out infinite; }
+    .node-2 { top: 35%; right: 6%; animation: float 7s ease-in-out infinite 1s; }
+    .node-3 { bottom: 25%; left: 15%; animation: float 6s ease-in-out infinite 2s; }
+    .node-4 { top: 65%; right: 12%; animation: float 8s ease-in-out infinite .5s; }
+    .node-4::after { animation-delay: 1.5s; }
+    .node-5 { top: 12%; left: 55%; width: 4px; height: 4px; background: rgba(0,102,179,.5); animation: float 6s ease-in-out infinite 3s; }
+    .node-5::after { border-color: rgba(0,102,179,.25); }
+
+    /* Líneas de conexión CSS */
+    .connector {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(16,185,129,.2), transparent);
+      pointer-events: none;
+    }
+    .con-1 { top: 18%; left: 9%; width: 200px; transform: rotate(12deg); }
+    .con-2 { top: 35%; right: 7%; width: 160px; transform: rotate(-8deg); }
+    .con-3 { bottom: 26%; left: 16%; width: 240px; transform: rotate(20deg); }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      animation: fadeUp .85s ease both;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16,185,129,.13);
+      border: 1px solid rgba(16,185,129,.28);
+      color: #6ee7b7;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-chip .dot {
+      width: 8px; height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5.5vw, 3.8rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      letter-spacing: -.02em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #34d399, #10b981, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #94a3b8;
+      max-width: 580px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .hero-pills {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #64748b;
+      font-size: .83rem;
+    }
+    .pill .dot { width: 7px; height: 7px; background: #10b981; border-radius: 50%; flex-shrink: 0; }
+
+    /* ============================================================
+       INTRO DE VALOR
+    ============================================================ */
+    .intro {
+      background: var(--white);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .intro-inner { max-width: 720px; margin: 0 auto; }
+    .intro p {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+    .intro p strong { color: var(--text); font-weight: 700; }
+    .intro-line {
+      width: 56px; height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--emerald));
+      margin: 1.5rem auto 0;
+    }
+
+    /* ============================================================
+       GRID DE SERVICIOS
+    ============================================================ */
+    .services-section {
+      background: var(--bg);
+      padding: 5rem 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: var(--blue-light);
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .sec-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: .75rem;
+      letter-spacing: -.01em;
+    }
+    .sec-sub {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Tarjeta base */
+    .svc-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .svc-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .svc-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sh-xl);
+    }
+
+    /* Variantes de color por tarjeta */
+    .svc-card.blue:hover   { border-color: var(--blue);   box-shadow: 0 20px 40px rgba(0,102,179,.15); }
+    .svc-card.blue::before { background: linear-gradient(135deg, rgba(0,102,179,.03) 0%, transparent 60%); }
+    .svc-card.blue:hover::before { opacity: 1; }
+
+    .svc-card.emerald:hover   { border-color: var(--emerald); box-shadow: 0 20px 40px rgba(5,150,105,.15); }
+    .svc-card.emerald::before { background: linear-gradient(135deg, rgba(5,150,105,.03) 0%, transparent 60%); }
+    .svc-card.emerald:hover::before { opacity: 1; }
+
+    .svc-card.purple:hover   { border-color: var(--purple); box-shadow: 0 20px 40px rgba(124,58,237,.15); }
+    .svc-card.purple::before { background: linear-gradient(135deg, rgba(124,58,237,.03) 0%, transparent 60%); }
+    .svc-card.purple:hover::before { opacity: 1; }
+
+    .svc-card.orange:hover   { border-color: var(--orange); box-shadow: 0 20px 40px rgba(234,88,12,.15); }
+    .svc-card.orange::before { background: linear-gradient(135deg, rgba(234,88,12,.03) 0%, transparent 60%); }
+    .svc-card.orange:hover::before { opacity: 1; }
+
+    .svc-card.teal:hover   { border-color: var(--teal); box-shadow: 0 20px 40px rgba(13,148,136,.15); }
+    .svc-card.teal::before { background: linear-gradient(135deg, rgba(13,148,136,.03) 0%, transparent 60%); }
+    .svc-card.teal:hover::before { opacity: 1; }
+
+    /* Ícono */
+    .svc-icon {
+      width: 58px; height: 58px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .svc-icon.blue    { background: var(--blue-light); }
+    .svc-icon.emerald { background: var(--emerald-lt); }
+    .svc-icon.purple  { background: var(--purple-lt);  }
+    .svc-icon.orange  { background: var(--orange-lt);  }
+    .svc-icon.teal    { background: var(--teal-lt);    }
+
+    /* Texto */
+    .svc-tagline {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      position: relative;
+      z-index: 1;
+    }
+    .svc-tagline.blue    { color: var(--blue);    }
+    .svc-tagline.emerald { color: var(--emerald); }
+    .svc-tagline.purple  { color: var(--purple);  }
+    .svc-tagline.orange  { color: var(--orange);  }
+    .svc-tagline.teal    { color: var(--teal);    }
+
+    .svc-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.25;
+      position: relative;
+      z-index: 1;
+    }
+    .svc-desc {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.72;
+      flex-grow: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* CTA inline */
+    .svc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .83rem;
+      font-weight: 700;
+      margin-top: .5rem;
+      position: relative;
+      z-index: 1;
+      transition: gap .2s ease;
+      text-decoration: none;
+    }
+    .svc-cta:hover { gap: 10px; }
+    .svc-cta.blue    { color: var(--blue);    }
+    .svc-cta.emerald { color: var(--emerald); }
+    .svc-cta.purple  { color: var(--purple);  }
+    .svc-cta.orange  { color: var(--orange);  }
+    .svc-cta.teal    { color: var(--teal);    }
+
+    /* ── RADAR B2B — tarjeta flagship ── */
+    .svc-card.flagship {
+      border-color: transparent;
+      background: linear-gradient(var(--white), var(--white)) padding-box,
+                  linear-gradient(135deg, var(--blue), var(--emerald), var(--purple)) border-box;
+      border: 2px solid transparent;
+    }
+    .svc-card.flagship:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(0,102,179,.20), 0 0 0 1px rgba(0,102,179,.10);
+    }
+
+    .flagship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+      color: white;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      width: fit-content;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Ícono radar animado */
+    .radar-wrapper {
+      position: relative;
+      width: 58px; height: 58px;
+      flex-shrink: 0;
+    }
+    .radar-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(0,102,179,.25);
+      animation: radarPing 2.5s ease-out infinite;
+    }
+    .radar-ring-1 { inset: 0; animation-delay: 0s; }
+    .radar-ring-2 { inset: -4px; animation-delay: .8s; }
+    .radar-ring-3 { inset: -8px; animation-delay: 1.6s; }
+
+    /* ============================================================
+       FRANJA DE MÉTRICAS
+    ============================================================ */
+    .metrics {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #0a3d6e 100%);
+      padding: 4.5rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .metrics::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .metrics-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .metric-item { padding: 1rem; }
+    .metric-num {
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: .5rem;
+      background: linear-gradient(135deg, #fff 40%, #6ee7b7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .metric-label {
+      font-size: .95rem;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+    .metric-label strong { color: #cbd5e1; display: block; font-size: 1rem; margin-bottom: .2rem; }
+    .metric-divider {
+      width: 1px;
+      background: rgba(255,255,255,.10);
+      margin: auto;
+    }
+
+    /* ============================================================
+       CTA FINAL
+    ============================================================ */
+    .final-cta {
+      background: linear-gradient(135deg, #0d0d1a 0%, var(--blue-dark) 45%, #071a0e 100%);
+      padding: 6rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .final-cta-blob-1 {
+      width: 450px; height: 450px;
+      top: -100px; right: -80px;
+      background: radial-gradient(circle, rgba(16,185,129,.15) 0%, transparent 70%);
+      animation: blob 9s ease-in-out infinite;
+    }
+    .final-cta-blob-2 {
+      width: 350px; height: 350px;
+      bottom: -80px; left: -60px;
+      background: radial-gradient(circle, rgba(0,102,179,.2) 0%, transparent 70%);
+      animation: blob 11s ease-in-out infinite 2s;
+    }
+
+    .final-cta-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -.01em;
+    }
+    .final-cta h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #34d399, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .final-cta p {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-dk));
+      color: #fff;
+      padding: .95rem 1.9rem;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all .25s ease;
+      box-shadow: 0 4px 16px rgba(5,150,105,.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(5,150,105,.45);
+      background: linear-gradient(135deg, var(--emerald-dk), #065f46);
+    }
+    .btn-primary svg { transition: transform .2s; }
+    .btn-primary:hover svg { transform: translateX(4px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255,255,255,.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,.15);
+      padding: .95rem 1.9rem;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all .25s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.25);
+      transform: translateY(-2px);
+    }
+
+    .final-trust {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .final-trust span {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #64748b;
+      font-size: .82rem;
+    }
+    .final-trust span .dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #050e1a;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .footer-wrap { max-width: 1160px; margin: 0 auto; }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #1e293b;
+      margin-bottom: 1.25rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-brand img { height: 36px; width: auto; }
+    .footer-brand-name { font-size: .85rem; color: #e2e8f0; font-weight: 600; }
+    .footer-brand-nit  { font-size: .72rem; color: #475569; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+    .footer-links a { color: #64748b; font-size: .78rem; transition: color .2s; }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-sep { color: #1e293b; font-size: .9rem; }
+    .footer-bottom { font-size: .76rem; color: #475569; text-align: center; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .metrics-inner { grid-template-columns: 1fr; gap: 0; }
+      .metric-divider { display: none; }
+      .metric-item { padding: 1.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,.07); }
+      .metric-item:last-child { border-bottom: none; }
+      .navbar-links { display: none; }
+      .node-1, .node-3, .node-5, .con-1, .con-2, .con-3 { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { min-height: 85vh; }
+      .hero h1 { font-size: 1.9rem; }
+      .hero-pills { flex-direction: column; align-items: center; gap: .6rem; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .svc-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================================================
+       NAVBAR
+  ================================================================ -->
+  <header class="navbar" aria-label="Navegación principal">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo" aria-label="Inicio BCITA">
+        <img src="/b-cita1.png" alt="BCITA Soluciones y Automatización" />
+      </a>
+      <nav class="navbar-links">
+        <a href="/servicios/index.html" class="active">Servicios</a>
+        <a href="/#resultados">Resultados</a>
+        <a href="/#contacto">Contacto</a>
+        <a href="https://beacons.ai/b_cita/mediakit" target="_blank" rel="noopener">Portafolio</a>
+      </nav>
+      <a href="https://wa.me/573024446047?text=Hola,%20quiero%20conocer%20sus%20servicios" target="_blank" rel="noopener" class="navbar-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Hablar con un asesor
+      </a>
+    </div>
+  </header>
+
+
+  <!-- ================================================================
+       HERO
+  ================================================================ -->
+  <section class="hero" aria-label="Encabezado de servicios">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
+
+    <div class="hero-nodes" aria-hidden="true">
+      <div class="node node-1"></div>
+      <div class="node node-2"></div>
+      <div class="node node-3"></div>
+      <div class="node node-4"></div>
+      <div class="node node-5"></div>
+      <div class="connector con-1"></div>
+      <div class="connector con-2"></div>
+      <div class="connector con-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-chip">
+        <span class="dot" aria-hidden="true"></span>
+        BCITA Soluciones · Fusagasugá, Colombia
+      </div>
+
+      <h1>
+        Hacemos que tu empresa<br>
+        <em>trabaje sola mientras duermes</em>
+      </h1>
+
+      <p class="hero-sub">
+        Seis servicios de transformación digital diseñados para empresas colombianas que quieren crecer sin contratar más personas ni gastar más tiempo en tareas que una máquina puede hacer mejor.
+      </p>
+
+      <div class="hero-pills">
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Innovación real</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Resultados medibles</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Sin tecnicismos</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Asesoría gratuita</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       INTRO DE VALOR
+  ================================================================ -->
+  <section class="intro reveal" aria-label="Propuesta de valor">
+    <div class="intro-inner">
+      <p>
+        En BCITA no vendemos software ni tecnología — vendemos <strong>tiempo de vuelta, errores eliminados y procesos que funcionan solos</strong>. Trabajamos con empresas medianas y pequeñas de todos los sectores que todavía cargan con hojas de cálculo, WhatsApps sin control y tareas que ningún empleado debería estar haciendo a mano.
+      </p>
+      <div class="intro-line" aria-hidden="true"></div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       GRID DE SERVICIOS
+  ================================================================ -->
+  <section class="services-section" id="servicios" aria-labelledby="svc-title">
+    <div class="section-header reveal">
+      <span class="badge">Nuestros servicios</span>
+      <h2 class="sec-title" id="svc-title">6 formas de transformar tu empresa</h2>
+      <p class="sec-sub">Cada servicio está diseñado para resolver un problema real. Sin paquetes genéricos.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- ① RADAR B2B — FLAGSHIP ──────────────────────────────── -->
+      <article class="svc-card flagship reveal reveal-d1" aria-label="Servicio RADAR B2B por CITA">
+
+        <div class="flagship-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          Producto Flagship
+        </div>
+
+        <div class="radar-wrapper" aria-hidden="true">
+          <div class="radar-ring radar-ring-1"></div>
+          <div class="radar-ring radar-ring-2"></div>
+          <div class="radar-ring radar-ring-3"></div>
+          <div class="svc-icon blue" style="position:relative;z-index:2;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
+            </svg>
+          </div>
+        </div>
+
+        <span class="svc-tagline blue">Encuentra tus próximos clientes antes de que ellos te busquen</span>
+        <h3 class="svc-name">RADAR B2B por CITA</h3>
+        <p class="svc-desc">Sistema automatizado de prospección B2B que identifica empresas con potencial de compra usando fuentes públicas (RUES, LinkedIn, web) y entrega listas enriquecidas con contactos verificados, sector, tamaño y señales de intención. Para equipos comerciales que quieren llenar su pipeline sin trabajo manual.</p>
+        <a href="https://wa.me/573024446047?text=Hola,%20quiero%20saber%20m%C3%A1s%20sobre%20RADAR%20B2B" target="_blank" rel="noopener" class="svc-cta blue">
+          Quiero saber más
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- ② AUTOMATIZACIÓN A LA MEDIDA ───────────────────────── -->
+      <article class="svc-card emerald reveal reveal-d2">
+        <div class="svc-icon emerald" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a7 7 0 1 0 0 14A7 7 0 0 0 12 2z"/><circle cx="12" cy="9" r="1" fill="#059669"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </div>
+        <span class="svc-tagline emerald">Elimina las tareas repetitivas que consumen tu día</span>
+        <h3 class="svc-name">Automatización a la Medida</h3>
+        <p class="svc-desc">Diseñamos e implementamos flujos automáticos que conectan tus aplicaciones, procesan datos, envían notificaciones y generan reportes sin intervención humana. Desde aprobaciones de documentos hasta sincronización entre sistemas. Tú defines el proceso, nosotros lo automatizamos.</p>
+        <a href="https://wa.me/573024446047?text=Hola,%20quiero%20automatizar%20un%20proceso%20en%20mi%20empresa" target="_blank" rel="noopener" class="svc-cta emerald">
+          Automatizar mi proceso
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- ③ DIGITALIZACIÓN DE PROCESOS ───────────────────────── -->
+      <article class="svc-card purple reveal reveal-d3">
+        <div class="svc-icon purple" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </div>
+        <span class="svc-tagline purple">De papel y Excel a procesos digitales que escalan</span>
+        <h3 class="svc-name">Digitalización de Procesos</h3>
+        <p class="svc-desc">Convertimos procesos manuales, formularios físicos y hojas de cálculo en aplicaciones digitales robustas con flujos de aprobación, alertas automáticas y trazabilidad completa. Tu equipo trabaja mejor, tú tienes control total sin revisar archivos de Excel.</p>
+        <a href="https://wa.me/573024446047?text=Hola,%20quiero%20digitalizar%20mis%20procesos" target="_blank" rel="noopener" class="svc-cta purple">
+          Digitalizar mis procesos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- ④ CRM Y GESTIÓN COMERCIAL ───────────────────────────── -->
+      <article class="svc-card orange reveal reveal-d4">
+        <div class="svc-icon orange" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <span class="svc-tagline orange">Nunca más pierdas un cliente por falta de seguimiento</span>
+        <h3 class="svc-name">CRM y Gestión Comercial</h3>
+        <p class="svc-desc">Implementamos y personalizamos sistemas de gestión de clientes adaptados a tu proceso de ventas real. Seguimiento automático, recordatorios, pipeline visual y reportes de conversión. Hecho para que tu equipo comercial venda más con menos esfuerzo manual.</p>
+        <a href="https://wa.me/573024446047?text=Hola,%20quiero%20implementar%20un%20CRM%20para%20mi%20equipo" target="_blank" rel="noopener" class="svc-cta orange">
+          Quiero mi CRM
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- ⑤ PÁGINAS WEB Y LANDING PAGES ───────────────────────── -->
+      <article class="svc-card blue reveal reveal-d5">
+        <div class="svc-icon blue" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><polyline points="7 8 12 13 17 8"/>
+          </svg>
+        </div>
+        <span class="svc-tagline blue">Tu presencia digital que trabaja 24/7</span>
+        <h3 class="svc-name">Páginas Web y Landing Pages</h3>
+        <p class="svc-desc">Diseñamos sitios web y páginas de conversión orientadas a resultados: rápidas, optimizadas para móvil y para aparecer en Google. No solo bonitas — diseñadas para convertir visitantes en clientes reales con métricas medibles desde el primer día.</p>
+        <a href="https://wa.me/573024446047?text=Hola,%20quiero%20una%20p%C3%A1gina%20web%20para%20mi%20negocio" target="_blank" rel="noopener" class="svc-cta blue">
+          Quiero mi página web
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- ⑥ INTEGRACIONES Y CONECTORES ────────────────────────── -->
+      <article class="svc-card teal reveal reveal-d6">
+        <div class="svc-icon teal" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+        </div>
+        <span class="svc-tagline teal">Tus sistemas hablando entre sí, sin intervención manual</span>
+        <h3 class="svc-name">Integraciones y Conectores</h3>
+        <p class="svc-desc">Conectamos plataformas que no se comunican entre sí: ERP con CRM, WhatsApp con bases de datos, formularios con reportes automáticos. Si tienes datos dispersos en múltiples sistemas, los unificamos en un solo flujo coherente y confiable.</p>
+        <a href="https://wa.me/573024446047?text=Hola,%20necesito%20integrar%20mis%20sistemas" target="_blank" rel="noopener" class="svc-cta teal">
+          Conectar mis sistemas
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FRANJA DE MÉTRICAS
+  ================================================================ -->
+  <section class="metrics" aria-label="Propuesta de valor en cifras">
+    <div class="metrics-inner">
+
+      <div class="metric-item reveal">
+        <div class="metric-num">+40h</div>
+        <div class="metric-label">
+          <strong>Horas devueltas al mes</strong>
+          promedio por empresa automatizada
+        </div>
+      </div>
+
+      <div class="metric-divider reveal"></div>
+
+      <div class="metric-item reveal reveal-d2">
+        <div class="metric-num">7</div>
+        <div class="metric-label">
+          <strong>Días para ver resultados</strong>
+          desde el inicio de la implementación
+        </div>
+      </div>
+
+      <div class="metric-divider reveal"></div>
+
+      <div class="metric-item reveal reveal-d3">
+        <div class="metric-num">6</div>
+        <div class="metric-label">
+          <strong>Sectores atendidos</strong>
+          restaurantes, salud, comercio, logística, educación y servicios
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       CTA FINAL
+  ================================================================ -->
+  <section class="final-cta" aria-label="Llamada a la acción final">
+    <div class="final-cta-blob final-cta-blob-1" aria-hidden="true"></div>
+    <div class="final-cta-blob final-cta-blob-2" aria-hidden="true"></div>
+
+    <div class="final-cta-inner reveal">
+      <h2>
+        ¿Cuál de estos servicios<br>
+        <em>necesita tu empresa hoy?</em>
+      </h2>
+      <p>
+        Cuéntanos en 2 minutos qué hace tu empresa y qué proceso te está costando más tiempo o dinero. La asesoría inicial es completamente gratuita.
+      </p>
+
+      <div class="cta-buttons">
+        <a
+          href="https://wa.me/573024446047?text=Hola%20BCITA,%20quiero%20una%20asesor%C3%ADa%20gratuita%20sobre%20sus%20servicios"
+          target="_blank"
+          rel="noopener"
+          class="btn-primary"
+        >
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          Asesoría gratuita por WhatsApp
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+
+        <a href="mailto:soluciones@bcita.com.co" class="btn-secondary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Enviar un correo
+        </a>
+      </div>
+
+      <div class="final-trust">
+        <span><span class="dot" aria-hidden="true"></span>Sin compromiso</span>
+        <span><span class="dot" aria-hidden="true"></span>Respuesta en menos de 24h</span>
+        <span><span class="dot" aria-hidden="true"></span>Orgullosamente colombianos</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer aria-label="Pie de página">
+    <div class="footer-wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/b-cita1.png" alt="BCITA Soluciones y Automatización" />
+          <div>
+            <div class="footer-brand-name">BCITA Soluciones y Automatización S.A.S.</div>
+            <div class="footer-brand-nit">NIT 902031908-7 · Fusagasugá, Cundinamarca</div>
+          </div>
+        </div>
+        <nav class="footer-links" aria-label="Enlaces del pie de página">
+          <a href="/politica-datos/index.html">Política de Datos</a>
+          <span class="footer-sep" aria-hidden="true">·</span>
+          <a href="mailto:soluciones@bcita.com.co">soluciones@bcita.com.co</a>
+          <span class="footer-sep" aria-hidden="true">·</span>
+          <a href="https://wa.me/573024446047" target="_blank" rel="noopener">302 444 6047</a>
+          <span class="footer-sep" aria-hidden="true">·</span>
+          <a href="/">Inicio</a>
+        </nav>
+      </div>
+      <p class="footer-bottom">
+        &copy; 2025 BCITA Soluciones y Automatización S.A.S. &nbsp;·&nbsp; Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ================================================================
+       JS — Scroll reveal (IntersectionObserver mínimo)
+  ================================================================ -->
+  <script>
+    (function () {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.11 });
+
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        io.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>
