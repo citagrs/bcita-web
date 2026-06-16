@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digitaliza tu Restaurante en Fusagasugá | BCITA Soluciones</title>
+  <meta name="description" content="Página web en Google, reservas automáticas por WhatsApp y fidelización de clientes para restaurantes en Fusagasugá. Sin tecnicismos. Resultados desde la primera semana." />
+  <meta name="keywords" content="restaurantes Fusagasugá, digitalización restaurante, página web restaurante, reservas WhatsApp restaurante, Fusagasugá Cundinamarca" />
+  <meta property="og:title" content="Digitaliza tu Restaurante en Fusagasugá | BCITA" />
+  <meta property="og:description" content="Te ponemos en Google, automatizamos tus reservas y traemos de vuelta a tus clientes cada fin de semana." />
+  <meta property="og:locale" content="es_CO" />
+  <link rel="canonical" href="https://bcita.com.co/restaurantes/" />
+
+  <style>
+    /* ============================================================
+       RESET & VARIABLES DE MARCA BCITA
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Paleta BCITA */
+      --blue:        #0066B3;
+      --blue-dark:   #003862;
+      --blue-light:  #dbeafe;
+      --emerald:     #059669;
+      --emerald-lt:  #d1fae5;
+      --emerald-dk:  #047857;
+      --orange:      #ea580c;
+      --orange-lt:   #fff7ed;
+
+      /* Neutros */
+      --text:        #111827;
+      --text-mid:    #4B5563;
+      --text-soft:   #9CA3AF;
+      --bg:          #F9FAFB;
+      --white:       #ffffff;
+      --border:      #E5E7EB;
+
+      /* Sombras */
+      --sh-sm:  0 1px 3px rgba(0,0,0,.10), 0 1px 2px rgba(0,0,0,.06);
+      --sh-md:  0 4px 6px -1px rgba(0,0,0,.10), 0 2px 4px -1px rgba(0,0,0,.06);
+      --sh-lg:  0 10px 15px -3px rgba(0,0,0,.10), 0 4px 6px -2px rgba(0,0,0,.05);
+      --sh-xl:  0 20px 25px -5px rgba(0,0,0,.10), 0 10px 10px -5px rgba(0,0,0,.04);
+
+      --radius:    12px;
+      --radius-lg: 20px;
+      --font: 'Segoe UI', Arial, Helvetica, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    /* ============================================================
+       ANIMACIONES
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    @keyframes blob {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33%       { transform: translate(22px,-18px) scale(1.06); }
+      66%       { transform: translate(-12px,14px) scale(.95);  }
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1;   }
+      50%       { opacity: .35; }
+    }
+
+    /* Clases que JS activa al entrar en viewport */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Retraso escalonado para grids */
+    .reveal-d1 { transition-delay: .10s; }
+    .reveal-d2 { transition-delay: .20s; }
+    .reveal-d3 { transition-delay: .30s; }
+
+    /* ============================================================
+       UTILIDADES
+    ============================================================ */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .sec { padding: 5rem 1.5rem; }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: var(--blue-light);
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+
+    .sec-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: .75rem;
+    }
+
+    .sec-sub {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      max-width: 580px;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(140deg, #070e1c 0%, #003862 45%, #071a0e 100%);
+    }
+
+    /* blobs decorativos — sin imágenes externas */
+    .hero-blob-1,
+    .hero-blob-2,
+    .hero-blob-3 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .hero-blob-1 {
+      width: 480px; height: 480px;
+      top: -120px; right: -120px;
+      background: radial-gradient(circle, rgba(16,185,129,.22) 0%, transparent 70%);
+      animation: blob 9s ease-in-out infinite;
+    }
+    .hero-blob-2 {
+      width: 380px; height: 380px;
+      bottom: -100px; left: -80px;
+      background: radial-gradient(circle, rgba(0,102,179,.28) 0%, transparent 70%);
+      animation: blob 12s ease-in-out infinite 2s;
+    }
+    .hero-blob-3 {
+      width: 300px; height: 300px;
+      top: 45%; left: 40%;
+      background: radial-gradient(circle, rgba(234,88,12,.12) 0%, transparent 70%);
+      animation: blob 7s ease-in-out infinite 4s;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeUp .9s ease both;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16,185,129,.14);
+      border: 1px solid rgba(16,185,129,.30);
+      color: #6ee7b7;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-chip .dot {
+      width: 8px; height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulseDot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #34d399;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #cbd5e1;
+      max-width: 660px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #059669, #047857);
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all .25s ease;
+      box-shadow: 0 4px 16px rgba(5,150,105,.40);
+    }
+    .btn-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(5,150,105,.50);
+      background: linear-gradient(135deg, #047857, #065f46);
+    }
+    .btn-hero svg { transition: transform .2s ease; }
+    .btn-hero:hover svg { transform: translateX(4px); }
+
+    .hero-trust {
+      margin-top: 2.75rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #94a3b8;
+      font-size: .85rem;
+    }
+    .hero-trust-item .dot {
+      width: 7px; height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       PROBLEMAS
+    ============================================================ */
+    .problems { background: var(--bg); }
+
+    .problems-head {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .problems-head .sec-sub { margin: 0 auto; }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .prob-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border-left: 4px solid #ef4444;
+      box-shadow: var(--sh-md);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .prob-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-xl);
+    }
+
+    .prob-icon {
+      width: 52px; height: 52px;
+      background: #fef2f2;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .prob-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: .65rem;
+      color: var(--text);
+    }
+    .prob-card p {
+      font-size: .95rem;
+      color: var(--text-mid);
+      line-height: 1.72;
+    }
+    .prob-quote {
+      margin-top: 1rem;
+      padding: .7rem 1rem;
+      background: #fef2f2;
+      border-radius: 8px;
+      font-style: italic;
+      font-size: .85rem;
+      color: #b91c1c;
+    }
+
+    /* ============================================================
+       SOLUCIONES
+    ============================================================ */
+    .solutions { background: var(--white); }
+
+    .solutions-head {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .solutions-head .sec-sub { margin: .5rem auto 0; }
+
+    .sol-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .sol-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      background: var(--white);
+      transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+    }
+    .sol-card:hover {
+      border-color: var(--blue);
+      box-shadow: var(--sh-xl);
+      transform: translateY(-4px);
+    }
+
+    .sol-icon {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .sol-icon.blue    { background: var(--blue-light); }
+    .sol-icon.emerald { background: var(--emerald-lt); }
+    .sol-icon.orange  { background: var(--orange-lt);  }
+
+    .sol-tag {
+      display: inline-block;
+      padding: 3px 11px;
+      border-radius: 999px;
+      font-size: .73rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .sol-tag.blue    { background: var(--blue-light); color: var(--blue);    }
+    .sol-tag.emerald { background: var(--emerald-lt); color: var(--emerald); }
+    .sol-tag.orange  { background: var(--orange-lt);  color: var(--orange);  }
+
+    .sol-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .65rem;
+    }
+    .sol-card > p {
+      font-size: .95rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .sol-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+    .sol-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: .875rem;
+      color: var(--text-mid);
+    }
+    .sol-list li::before {
+      content: '✓';
+      color: var(--emerald);
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ============================================================
+       CÓMO FUNCIONA
+    ============================================================ */
+    .how { background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%); }
+
+    .how-head {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .how-head .sec-sub { margin: .5rem auto 0; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--sh-md);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .step:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--sh-lg);
+    }
+
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 14px rgba(0,102,179,.30);
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .65rem;
+    }
+    .step p {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.68;
+    }
+
+    /* ============================================================
+       CONTACTO / FORMULARIO
+    ============================================================ */
+    .contact-sec {
+      background: var(--blue-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .contact-blob-1 {
+      width: 350px; height: 350px;
+      top: -80px; right: -80px;
+      background: radial-gradient(circle, rgba(16,185,129,.12) 0%, transparent 70%);
+    }
+    .contact-blob-2 {
+      width: 280px; height: 280px;
+      bottom: -60px; left: -60px;
+      background: radial-gradient(circle, rgba(0,102,179,.18) 0%, transparent 70%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-copy h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .contact-copy > p {
+      color: #94a3b8;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-perks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+    }
+    .contact-perks li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #cbd5e1;
+      font-size: .9rem;
+    }
+    .perk-check {
+      width: 22px; height: 22px;
+      background: rgba(16,185,129,.18);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #10b981;
+      font-size: .78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* Tarjeta del formulario */
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--sh-xl);
+    }
+
+    .form-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .35rem;
+    }
+    .form-card .form-desc {
+      font-size: .875rem;
+      color: var(--text-mid);
+      margin-bottom: 1.75rem;
+    }
+
+    .fg { margin-bottom: 1.2rem; }
+
+    .fg label {
+      display: block;
+      font-size: .855rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .38rem;
+    }
+
+    .fg input,
+    .fg select {
+      width: 100%;
+      padding: .72rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: .95rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .2s ease, box-shadow .2s ease;
+      font-family: var(--font);
+      appearance: none;
+    }
+    .fg select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239CA3AF' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .fg input:focus,
+    .fg select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,102,179,.12);
+    }
+    .fg input::placeholder { color: var(--text-soft); }
+
+    /* Checkbox de autorización */
+    .auth-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 1rem;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .auth-box input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--emerald);
+      flex-shrink: 0;
+      margin-top: 3px;
+      cursor: pointer;
+    }
+    .auth-box label {
+      font-size: .845rem;
+      color: #374151;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .auth-box label strong { color: #065f46; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #059669, #047857);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font);
+      transition: all .25s ease;
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: linear-gradient(135deg, #047857, #065f46);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(5,150,105,.40);
+    }
+    .btn-submit:disabled {
+      opacity: .65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Mensaje de error inline */
+    .form-error {
+      display: none;
+      margin-top: 1rem;
+      padding: .75rem 1rem;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      font-size: .85rem;
+      color: #b91c1c;
+      text-align: center;
+    }
+
+    .form-legal {
+      text-align: center;
+      font-size: .73rem;
+      color: var(--text-soft);
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+    .form-legal a {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+
+    /* Mensaje de éxito */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .form-success .success-icon {
+      width: 64px; height: 64px;
+      background: var(--emerald-lt);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .form-success h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .form-success p {
+      font-size: .9rem;
+      color: var(--text-mid);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #050e1a;
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    .footer-wrap { max-width: 1100px; margin: 0 auto; }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #1e293b;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .footer-logo {
+      width: 42px; height: 42px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--blue), var(--emerald));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .footer-brand-name {
+      font-size: .88rem;
+      color: #e2e8f0;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .footer-brand-nit {
+      font-size: .73rem;
+      color: #475569;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      align-items: center;
+    }
+    .footer-links a {
+      color: #64748b;
+      text-decoration: none;
+      font-size: .8rem;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-links .sep {
+      color: #1e293b;
+      font-size: .9rem;
+    }
+
+    .footer-bottom {
+      font-size: .78rem;
+      color: #475569;
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE FIRST
+    ============================================================ */
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-trust {
+        gap: 1rem;
+      }
+
+      .form-card {
+        padding: 1.75rem 1.25rem;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sec { padding: 3.5rem 1.1rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero-trust { flex-direction: column; align-items: center; gap: .75rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================================================
+       HERO — Sin menú de navegación (landing de conversión pura)
+  ================================================================ -->
+  <section class="hero" aria-label="Encabezado principal">
+    <div class="hero-blob-1" aria-hidden="true"></div>
+    <div class="hero-blob-2" aria-hidden="true"></div>
+    <div class="hero-blob-3" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+
+      <div class="hero-chip">
+        <span class="dot" aria-hidden="true"></span>
+        BCITA Soluciones · Fusagasugá, Cundinamarca
+      </div>
+
+      <h1>
+        Tu restaurante pierde clientes<br>
+        <em>que ni siquiera saben que existes</em>
+      </h1>
+
+      <p class="hero-sub">
+        Te ponemos en Google, automatizamos tus reservas por WhatsApp y traemos de vuelta a tus clientes cada fin de semana. Todo en menos de 7 días, sin que tengas que saber nada de tecnología.
+      </p>
+
+      <a href="#contacto" class="btn-hero">
+        Quiero digitalizar mi restaurante
+        <!-- flecha derecha -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+
+      <div class="hero-trust">
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Sin conocimientos técnicos</span>
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Primera consulta gratuita</span>
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Resultados desde la primera semana</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       PROBLEMAS — Los 3 dolores reales de los restaurantes en Fusa
+  ================================================================ -->
+  <section class="sec problems" id="problemas" aria-labelledby="prob-title">
+    <div class="wrap">
+
+      <div class="problems-head reveal">
+        <span class="badge">¿Te suena familiar?</span>
+        <h2 class="sec-title" id="prob-title">
+          Los 3 problemas que tienen<br>la mayoría de restaurantes en Fusagasugá
+        </h2>
+        <p class="sec-sub">No eres el único. Casi todos los restaurantes de la región pasan por lo mismo.</p>
+      </div>
+
+      <div class="problems-grid">
+
+        <!-- Problema 1 -->
+        <article class="prob-card reveal reveal-d1">
+          <div class="prob-icon" aria-hidden="true">
+            <!-- Lupa con cruz = "no te encuentran" -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+          </div>
+          <h3>Los turistas no te encuentran en Google</h3>
+          <p>
+            Tienes el mejor sancocho de Fusagasugá, pero cuando alguien desde Bogotá busca
+            <em>"dónde comer en Fusagasugá"</em> este fin de semana… tu restaurante no aparece.
+            Aparece el de la competencia. Ese cliente se fue antes de siquiera llamarte.
+          </p>
+          <div class="prob-quote">"El que no aparece en Google, simplemente no existe para el turista."</div>
+        </article>
+
+        <!-- Problema 2 -->
+        <article class="prob-card reveal reveal-d2">
+          <div class="prob-icon" aria-hidden="true">
+            <!-- Chat desbordado = caos de reservas -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <line x1="9" y1="9" x2="15" y2="9"/>
+              <line x1="9" y1="13" x2="13" y2="13"/>
+            </svg>
+          </div>
+          <h3>Las reservas se convierten en un caos los fines de semana</h3>
+          <p>
+            El WhatsApp personal llenándose de mensajes, llamadas que no contestó nadie,
+            mesas vacías porque se olvidaron de confirmar, y el viernes en la noche
+            con doble reserva en la misma mesa. Los puentes y festivos esto se pone crítico.
+          </p>
+          <div class="prob-quote">"¿Cuántos clientes perdiste el último puente por no tener un sistema?"</div>
+        </article>
+
+        <!-- Problema 3 -->
+        <article class="prob-card reveal reveal-d3">
+          <div class="prob-icon" aria-hidden="true">
+            <!-- Silueta de personas = no hay seguimiento -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Los clientes se van y nunca más vuelves a saber de ellos</h3>
+          <p>
+            Ese grupo que vino desde Bogotá y quedó encantado con la comida, ¿tienes forma de
+            avisarles cuando tengas un plato especial el próximo fin de semana? ¿De pedirles
+            que dejen una reseña en Google? Si no tienes su contacto, ese cliente se perdió para siempre.
+          </p>
+          <div class="prob-quote">"Un cliente que no regresa es plata que se fue sin vuelta."</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       SOLUCIONES — 3 propuestas concretas
+  ================================================================ -->
+  <section class="sec solutions" id="soluciones" aria-labelledby="sol-title">
+    <div class="wrap">
+
+      <div class="solutions-head reveal">
+        <span class="badge">Lo que hacemos</span>
+        <h2 class="sec-title" id="sol-title">3 soluciones concretas<br>para tu restaurante</h2>
+        <p class="sec-sub">Sin tecnicismos. Sin contratos eternos. Sin que tengas que aprender nada de tecnología.</p>
+      </div>
+
+      <div class="sol-grid">
+
+        <!-- Solución 1 -->
+        <article class="sol-card reveal reveal-d1">
+          <div class="sol-icon blue" aria-hidden="true">
+            <!-- Ícono de pantalla / web -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <span class="sol-tag blue">Solución 1</span>
+          <h3>Tu restaurante en Google en 7 días</h3>
+          <p>
+            Página web profesional con tu menú, galería de fotos, horarios y ubicación exacta en Google Maps.
+            Los turistas de Bogotá te van a encontrar antes de salir de casa el viernes.
+          </p>
+          <ul class="sol-list">
+            <li>Apareces en las búsquedas de Google y Google Maps</li>
+            <li>Menú digital con fotos, listo para actualizar desde el celular</li>
+            <li>Botón directo para que el cliente te escriba por WhatsApp</li>
+            <li>Horarios y ubicación siempre correctos</li>
+          </ul>
+        </article>
+
+        <!-- Solución 2 -->
+        <article class="sol-card reveal reveal-d2">
+          <div class="sol-icon emerald" aria-hidden="true">
+            <!-- Ícono de WhatsApp / chat automático -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              <circle cx="9" cy="12" r="1" fill="#059669"/>
+              <circle cx="12" cy="12" r="1" fill="#059669"/>
+              <circle cx="15" cy="12" r="1" fill="#059669"/>
+            </svg>
+          </div>
+          <span class="sol-tag emerald">Solución 2</span>
+          <h3>Reservas automáticas por WhatsApp</h3>
+          <p>
+            Un sistema que atiende las reservas por ti las 24 horas. El cliente escribe, recibe confirmación
+            automática y un recordatorio antes de llegar. Tú solo ves el resumen del día, sin pegarte al teléfono.
+          </p>
+          <ul class="sol-list">
+            <li>Confirma disponibilidad automáticamente, de día y de noche</li>
+            <li>Envía recordatorio al cliente 2 horas antes</li>
+            <li>Resumen diario de reservas directo en tu celular</li>
+            <li>Cero mesas doble reservadas, cero llamadas perdidas</li>
+          </ul>
+        </article>
+
+        <!-- Solución 3 -->
+        <article class="sol-card reveal reveal-d3">
+          <div class="sol-icon orange" aria-hidden="true">
+            <!-- Ícono de corazón / fidelización -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <span class="sol-tag orange">Solución 3</span>
+          <h3>Que tus clientes vuelvan cada fin de semana</h3>
+          <p>
+            El cliente escanea el QR de la mesa, deja su contacto, y nosotros lo mantenemos
+            conectado contigo: mensaje de agradecimiento, recordatorio de reseña en Google, y
+            promociones que llegan el jueves para traerlo el fin de semana.
+          </p>
+          <ul class="sol-list">
+            <li>QR en cada mesa para capturar el contacto del cliente</li>
+            <li>Mensaje de agradecimiento automático tras la visita</li>
+            <li>Promociones de jueves/viernes para llenar el salón el fin de semana</li>
+            <li>Reporte mensual: clientes nuevos vs. clientes que regresan</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       CÓMO FUNCIONA — 3 pasos
+  ================================================================ -->
+  <section class="sec how" id="como-funciona" aria-labelledby="how-title">
+    <div class="wrap">
+
+      <div class="how-head reveal">
+        <span class="badge">El proceso</span>
+        <h2 class="sec-title" id="how-title">Así de simple es empezar</h2>
+        <p class="sec-sub">Tres pasos. Sin formatos complicados ni reuniones eternas.</p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step reveal reveal-d1">
+          <div class="step-num" aria-hidden="true">1</div>
+          <h3>Nos cuentas cómo va tu negocio</h3>
+          <p>Déjanos tus datos y te contactamos por WhatsApp. Conversamos 20 minutos para entender qué necesitas y cuál es el problema más urgente.</p>
+        </div>
+
+        <div class="step reveal reveal-d2">
+          <div class="step-num" aria-hidden="true">2</div>
+          <h3>Te enviamos una propuesta clara</h3>
+          <p>Sin letras pequeñas. Te decimos exactamente qué vamos a hacer, cuánto tarda y cuánto cuesta. Tú decides con calma, sin presión.</p>
+        </div>
+
+        <div class="step reveal reveal-d3">
+          <div class="step-num" aria-hidden="true">3</div>
+          <h3>Implementamos y tú te despreocupas</h3>
+          <p>Nosotros nos encargamos de todo. Tú abre el restaurante. El soporte está incluido para que siempre funcione como debe.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FORMULARIO DE CONTACTO Y AUTORIZACIÓN WHATSAPP
+  ================================================================ -->
+  <section class="sec contact-sec" id="contacto" aria-labelledby="contact-title">
+    <div class="contact-blob contact-blob-1" aria-hidden="true"></div>
+    <div class="contact-blob contact-blob-2" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="contact-grid">
+
+        <!-- Copy izquierdo -->
+        <div class="contact-copy reveal">
+          <h2 id="contact-title">
+            ¿Listo para no perder más clientes<br>por no aparecer en Google?
+          </h2>
+          <p>
+            Déjanos tus datos y te contactamos hoy mismo.
+            La primera conversación es gratuita y sin ningún compromiso.
+          </p>
+          <ul class="contact-perks">
+            <li><span class="perk-check" aria-hidden="true">✓</span>Respuesta en menos de 24 horas</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Primera consulta sin costo</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Resultados visibles en 7 días</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Sin contratos a largo plazo</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Soporte técnico incluido</li>
+          </ul>
+        </div>
+
+        <!-- Formulario -->
+        <div class="reveal reveal-d2">
+          <div class="form-card">
+            <h3>Cuéntanos de tu restaurante</h3>
+            <p class="form-desc">Llenamos esto en 2 minutos y te escribimos hoy.</p>
+
+            <form id="contactForm" novalidate>
+              <div class="fg">
+                <label for="nombre">Tu nombre <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Don Oscar, María Elena, etc."
+                  required
+                  autocomplete="name"
+                  minlength="2"
+                />
+              </div>
+
+              <div class="fg">
+                <label for="negocio">Nombre del restaurante <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input
+                  type="text"
+                  id="negocio"
+                  name="negocio"
+                  placeholder="Restaurante El Mirador, Fonda La Abuela…"
+                  required
+                  minlength="2"
+                />
+              </div>
+
+              <div class="fg">
+                <label for="whatsapp">Tu número de WhatsApp <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input
+                  type="tel"
+                  id="whatsapp"
+                  name="whatsapp"
+                  placeholder="300 123 4567"
+                  required
+                  pattern="[\d\s\+\-]{7,15}"
+                  autocomplete="tel"
+                />
+              </div>
+
+              <div class="fg">
+                <label for="interes">¿Qué te interesa más? <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <select id="interes" name="interes" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="web">Página web y aparecer en Google (Solución 1)</option>
+                  <option value="reservas">Reservas automáticas por WhatsApp (Solución 2)</option>
+                  <option value="fidelizacion">Que los clientes vuelvan cada fin de semana (Solución 3)</option>
+                  <option value="todo">Me interesan las 3 soluciones</option>
+                  <option value="orientacion">Todavía no sé, necesito que me orienten</option>
+                </select>
+              </div>
+
+              <!-- Campos ocultos — identifican la página de origen en SharePoint -->
+              <input type="hidden" name="sector"       value="Restaurantes" />
+              <input type="hidden" name="pagina_origen" value="/restaurantes" />
+
+              <!-- Autorización explícita WhatsApp — OBLIGATORIA -->
+              <div class="auth-box">
+                <input
+                  type="checkbox"
+                  id="autoriza_whatsapp"
+                  name="autoriza_whatsapp"
+                  value="si"
+                  required
+                />
+                <label for="autoriza_whatsapp">
+                  <strong>Autorizo a BCITA Soluciones y Automatización S.A.S.</strong>
+                  (NIT 902031908-7) para contactarme por WhatsApp al número indicado,
+                  con el fin de brindarme información sobre sus servicios para restaurantes.
+                  Entiendo que puedo revocar esta autorización en cualquier momento. <em>(Requerido)</em>
+                </label>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                <!-- Ícono de WhatsApp (SVG inline) -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Quiero que me contacten por WhatsApp
+              </button>
+
+              <div class="form-error" id="formError">
+                Hubo un problema al enviar el formulario. Por favor intenta de nuevo o escríbenos directamente al <strong>302 444 6047</strong>.
+              </div>
+
+              <p class="form-legal">
+                Tus datos son tratados conforme a nuestra
+                <a href="/politica-datos" target="_blank" rel="noopener">Política de Tratamiento de Datos Personales</a>.
+                No los compartimos con terceros.
+              </p>
+            </form>
+
+            <!-- Mensaje de éxito (se muestra vía JS tras envío) -->
+            <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+              <div class="success-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <h4>¡Listo! Te contactamos hoy mismo</h4>
+              <p>Recibimos tu mensaje. Oscar te va a escribir por WhatsApp antes de que caiga la noche. Si prefieres, también puedes escribirnos directamente al <strong>302 444 6047</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer aria-label="Pie de página">
+    <div class="footer-wrap">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-logo" aria-hidden="true">BC</div>
+          <div>
+            <div class="footer-brand-name">BCITA Soluciones y Automatización S.A.S.</div>
+            <div class="footer-brand-nit">NIT 902031908-7 · Fusagasugá, Cundinamarca</div>
+          </div>
+        </div>
+
+        <nav class="footer-links" aria-label="Enlaces del pie de página">
+          <a href="/politica-datos">Política de Datos</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="mailto:soluciones@bcita.com.co">soluciones@bcita.com.co</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="https://wa.me/573024446047" target="_blank" rel="noopener noreferrer">WhatsApp: 302 444 6047</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="/">Volver al sitio principal</a>
+        </nav>
+
+      </div>
+
+      <p class="footer-bottom">
+        &copy; 2025 BCITA Soluciones y Automatización S.A.S. &nbsp;·&nbsp; Todos los derechos reservados.
+      </p>
+
+    </div>
+  </footer>
+
+
+  <script>
+    // ── Animaciones al hacer scroll ──────────────────────────────────
+    (function () {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.13 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    })();
+
+    // ── Envío del formulario → Power Automate (JSON) ─────────────────
+    (function () {
+      var POWER_AUTOMATE_URL = 'https://default2788c22b48a84e06b329e8d0623d6b.17.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/dfc580603f0f4a749828e6f81fc18d8a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=iFmidZYEu7NN4XvlAWOqxki9_Zf3iVxp9JtRwEJDdY0';
+
+      var form    = document.getElementById('contactForm');
+      var btn     = form.querySelector('.btn-submit');
+      var btnText = btn.innerHTML;
+      var success = document.getElementById('formSuccess');
+      var error   = document.getElementById('formError');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Validación HTML5 nativa
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        // Construir payload exactamente igual al schema de Power Automate
+        var payload = {
+          nombre:            document.getElementById('nombre').value.trim(),
+          negocio:           document.getElementById('negocio').value.trim(),
+          whatsapp:          document.getElementById('whatsapp').value.trim(),
+          interes:           document.getElementById('interes').value,
+          autoriza_whatsapp: document.getElementById('autoriza_whatsapp').checked,
+          sector:            form.querySelector('[name="sector"]').value,
+          pagina_origen:     form.querySelector('[name="pagina_origen"]').value
+        };
+
+        // Estado de carga
+        btn.disabled = true;
+        btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin .8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Enviando…';
+        error.style.display = 'none';
+
+        fetch(POWER_AUTOMATE_URL, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload)
+        })
+        .then(function (res) {
+          if (res.ok || res.status === 202) {
+            // Ocultar form, mostrar confirmación
+            form.style.display = 'none';
+            success.style.display = 'block';
+          } else {
+            throw new Error('HTTP ' + res.status);
+          }
+        })
+        .catch(function () {
+          // Restaurar botón y mostrar error
+          btn.disabled = false;
+          btn.innerHTML = btnText;
+          error.style.display = 'block';
+        });
+      });
+    })();
+  </script>
+
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+
+</body>
+</html>
