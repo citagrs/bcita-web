@@ -10,7 +10,7 @@ export default function Hero() {
 
   const handleWhatsAppClick = () => {
     window.open(
-      "https://wa.me/573024446047?text=Hola, quiero automatizar mi empresa",
+      "https://wa.me/573142539496?text=Hola, quiero automatizar mi empresa",
       "_blank"
     );
   };

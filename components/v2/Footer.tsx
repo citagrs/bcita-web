@@ -38,12 +38,12 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <a
-                  href="tel:+573024446047"
+                  href="tel:+573142539496"
                   className="flex items-center gap-3 hover:text-emerald-600 transition"
-                  aria-label="Llamar al número +57 302 444 6047"
+                  aria-label="Llamar al número +57 314 253 9496"
                 >
                   <Phone className="w-5 h-5 text-emerald-500" />
-                  <span>+57 302 444 6047</span>
+                  <span>+57 314 253 9496</span>
                 </a>
               </div>
               <div className="flex items-center gap-3">

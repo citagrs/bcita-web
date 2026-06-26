@@ -30,7 +30,7 @@ export default function AutoDiagnostic() {
   const savings = yesCount === 0 ? 20 : yesCount === 1 ? 30 : yesCount === 2 ? 35 : 40;
 
   const handleContactClick = () => {
-    window.open('https://wa.me/573024446047?text=Hola, completé el autodiagnóstico y quiero una asesoría gratuita', '_blank');
+    window.open('https://wa.me/573142539496?text=Hola, completé el autodiagnóstico y quiero una asesoría gratuita', '_blank');
   };
 
   return (

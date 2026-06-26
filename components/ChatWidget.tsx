@@ -173,7 +173,7 @@ export default function ChatWidget() {
       (lead.email ? `Email: ${lead.email}\n` : "") +
       (lead.problema ? `Proceso: ${lead.problema}\n` : "");
 
-    window.open(`https://wa.me/573024446047?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/573142539496?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   useEffect(() => {

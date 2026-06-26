@@ -18,7 +18,7 @@ export default function FinalCTA() {
 
   const handleWhatsAppClick = () => {
     const msg = `Hola, quiero que me ayuden con la automatización de mi empresa`;
-    window.open(`https://wa.me/573024446047?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/573142539496?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   // POST con timeout para evitar que el usuario se quede esperando
@@ -59,7 +59,7 @@ export default function FinalCTA() {
         `Soy ${formData.nombre} de ${formData.empresa}.\n\n` +
         `Mi correo: ${formData.email}\n\n` +
         `Quiero automatizar este proceso:\n${formData.problema}`;
-      window.open(`https://wa.me/573024446047?text=${encodeURIComponent(msg)}`, "_blank");
+      window.open(`https://wa.me/573142539496?text=${encodeURIComponent(msg)}`, "_blank");
 
       setTimeout(() => {
         setStatus("success");

@@ -27,7 +27,7 @@ export default function ScheduleModal({
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/573024446047?text=Hola%20B-cita%20%F0%9F%91%8B%20Quiero%20agendar%20una%20asesor%C3%ADa%20gratuita",
+      "https://wa.me/573142539496?text=Hola%20B-cita%20%F0%9F%91%8B%20Quiero%20agendar%20una%20asesor%C3%ADa%20gratuita",
       "_blank"
     );
   };

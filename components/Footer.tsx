@@ -37,7 +37,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-3">Contacto</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
             <li>Email: <a href="mailto:soluciones@bcita.com.co" className="underline">soluciones@bcita.com.co</a></li>
-            <li>(+57) 302 444 6047</li>
+            <li>(+57) 314 253 9496</li>
             <li>Colombia 🇨🇴</li>
             <li>Disponible Lunes–Sábado</li>
           </ul>

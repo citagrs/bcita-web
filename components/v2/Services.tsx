@@ -26,7 +26,7 @@ const services = [
 export default function Services() {
   const handleServiceClick = (serviceName: string) => {
     const message = `Hola, estoy interesado en: ${serviceName}`;
-    window.open(`https://wa.me/573024446047?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/573142539496?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
