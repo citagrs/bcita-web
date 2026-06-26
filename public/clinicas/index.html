@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatización para clínicas y consultorios en Colombia | BCITA</title>
+  <meta name="description" content="Agenda automática por WhatsApp, registro digital de pacientes sin papel y sistemas conectados para clínicas, consultorios médicos, odontológicos y psicológicos en Colombia. Implementación en menos de 7 días." />
+  <meta name="keywords" content="automatización consultorios médicos, agenda automática clínicas, software para consultorios Colombia, recordatorios de citas WhatsApp, gestión de pacientes sin papel" />
+  <meta property="og:title" content="Automatización para clínicas y consultorios | BCITA" />
+  <meta property="og:description" content="Reduzca el ausentismo, elimine el papeleo y conecte sus sistemas. Implementación en menos de 7 días." />
+  <meta property="og:locale" content="es_CO" />
+  <link rel="canonical" href="https://bcita.com.co/clinicas/" />
+  <link rel="icon" href="/b-cita1.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/b-cita1.png" />
+
+  <style>
+    /* ============================================================
+       RESET & VARIABLES DE MARCA BCITA
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #0066B3;
+      --blue-dark:   #003862;
+      --blue-light:  #dbeafe;
+      --emerald:     #059669;
+      --emerald-lt:  #d1fae5;
+      --emerald-dk:  #047857;
+      --teal:        #0d9488;
+      --teal-lt:     #ccfbf1;
+
+      --text:        #111827;
+      --text-mid:    #4B5563;
+      --text-soft:   #9CA3AF;
+      --bg:          #F9FAFB;
+      --white:       #ffffff;
+      --border:      #E5E7EB;
+
+      --sh-sm:  0 1px 3px rgba(0,0,0,.10), 0 1px 2px rgba(0,0,0,.06);
+      --sh-md:  0 4px 6px -1px rgba(0,0,0,.10), 0 2px 4px -1px rgba(0,0,0,.06);
+      --sh-lg:  0 10px 15px -3px rgba(0,0,0,.10), 0 4px 6px -2px rgba(0,0,0,.05);
+      --sh-xl:  0 20px 25px -5px rgba(0,0,0,.10), 0 10px 10px -5px rgba(0,0,0,.04);
+
+      --radius:    12px;
+      --radius-lg: 20px;
+      --font: 'Segoe UI', Arial, Helvetica, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    /* ============================================================
+       ANIMACIONES
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1;   }
+      50%       { opacity: .35; }
+    }
+    @keyframes iconPulse {
+      0%   { transform: scale(1);    }
+      50%  { transform: scale(1.05); }
+      100% { transform: scale(1);    }
+    }
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 4px 16px rgba(5,150,105,.40); }
+      50%       { box-shadow: 0 4px 26px rgba(5,150,105,.65); }
+    }
+    @keyframes ecgDraw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .5s ease-out, transform .5s ease-out;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .15s; }
+    .reveal-d2 { transition-delay: .30s; }
+    .reveal-d3 { transition-delay: .45s; }
+
+    .icon-pulse.in svg { animation: iconPulse .6s ease-out; }
+
+    /* ============================================================
+       UTILIDADES
+    ============================================================ */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .sec { padding: 5rem 1.5rem; }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: var(--blue-light);
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .sec-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: .75rem;
+    }
+    .sec-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 580px; }
+
+    /* ============================================================
+       HERO — pulso ECG en CSS/SVG ultraligero
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(140deg, #070e1c 0%, #003862 55%, #050d18 100%);
+    }
+
+    .hero-ecg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .55;
+    }
+    .hero-ecg path {
+      fill: none;
+      stroke: #10b981;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .28;
+    }
+    .hero-ecg .line-2 { stroke: #0066B3; opacity: .20; }
+
+    .hero-blob-1, .hero-blob-2 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .hero-blob-1 {
+      width: 460px; height: 460px;
+      top: -120px; right: -100px;
+      background: radial-gradient(circle, rgba(16,185,129,.18) 0%, transparent 70%);
+    }
+    .hero-blob-2 {
+      width: 380px; height: 380px;
+      bottom: -110px; left: -80px;
+      background: radial-gradient(circle, rgba(0,102,179,.24) 0%, transparent 70%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      max-width: 880px;
+      margin: 0 auto;
+      animation: fadeUp .9s ease both;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16,185,129,.14);
+      border: 1px solid rgba(16,185,129,.30);
+      color: #6ee7b7;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-chip .dot {
+      width: 8px; height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulseDot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.14;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: normal; color: #34d399; }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.4vw, 1.18rem);
+      color: #cbd5e1;
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #059669, #047857);
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .25s ease;
+      animation: ctaPulse 2.6s ease-in-out infinite;
+    }
+    .btn-hero:hover { transform: translateY(-2px); }
+    .btn-hero svg { transition: transform .2s ease; }
+    .btn-hero:hover svg { transform: translateX(4px); }
+
+    .hero-trust {
+      margin-top: 2.75rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #94a3b8;
+      font-size: .85rem;
+    }
+    .hero-trust-item .dot {
+      width: 7px; height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       DOLORES
+    ============================================================ */
+    .problems { background: var(--bg); }
+    .problems-head { text-align: center; margin-bottom: 3.5rem; }
+    .problems-head .sec-sub { margin: 0 auto; }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .prob-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border-left: 4px solid #ef4444;
+      box-shadow: var(--sh-md);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .prob-card:hover { transform: translateY(-4px); box-shadow: var(--sh-xl); }
+
+    .prob-icon {
+      width: 52px; height: 52px;
+      background: #fef2f2;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .prob-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .65rem; color: var(--text); }
+    .prob-card p { font-size: .95rem; color: var(--text-mid); line-height: 1.72; }
+    .prob-quote {
+      margin-top: 1rem;
+      padding: .7rem 1rem;
+      background: #fef2f2;
+      border-radius: 8px;
+      font-style: italic;
+      font-size: .85rem;
+      color: #b91c1c;
+    }
+
+    /* ============================================================
+       SOLUCIONES
+    ============================================================ */
+    .solutions { background: var(--white); }
+    .solutions-head { text-align: center; margin-bottom: 3.5rem; }
+    .solutions-head .sec-sub { margin: .5rem auto 0; }
+
+    .sol-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .sol-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      background: var(--white);
+      position: relative;
+      transition: border-color .3s ease, box-shadow .3s ease, transform .2s ease;
+    }
+    .sol-card:hover {
+      border-color: var(--blue);
+      box-shadow: var(--sh-xl);
+      transform: translateY(-4px);
+    }
+    .sol-card.featured { border-color: var(--emerald); }
+    .sol-card.featured:hover { box-shadow: 0 20px 40px rgba(5,150,105,.18); }
+
+    .sol-badge {
+      position: absolute;
+      top: -13px;
+      right: 1.5rem;
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-dk));
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: 999px;
+      box-shadow: 0 4px 10px rgba(5,150,105,.35);
+    }
+
+    .sol-icon {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .sol-icon.blue    { background: var(--blue-light); }
+    .sol-icon.emerald { background: var(--emerald-lt); }
+    .sol-icon.teal    { background: var(--teal-lt); }
+
+    .sol-tag {
+      display: inline-block;
+      padding: 3px 11px;
+      border-radius: 999px;
+      font-size: .73rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .sol-tag.blue    { background: var(--blue-light); color: var(--blue);    }
+    .sol-tag.emerald { background: var(--emerald-lt); color: var(--emerald); }
+    .sol-tag.teal    { background: var(--teal-lt);    color: var(--teal);    }
+
+    .sol-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: .65rem; }
+    .sol-card > p { font-size: .95rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 1.25rem; }
+
+    .sol-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    .sol-list li { display: flex; align-items: flex-start; gap: 8px; font-size: .875rem; color: var(--text-mid); }
+    .sol-list li::before { content: '✓'; color: var(--emerald); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+    /* ============================================================
+       CÓMO FUNCIONA — línea de progreso animada
+    ============================================================ */
+    .how { background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%); }
+    .how-head { text-align: center; margin-bottom: 4rem; }
+    .how-head .sec-sub { margin: .5rem auto 0; }
+
+    .steps-track {
+      position: relative;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .steps-line-bg, .steps-line-fg {
+      position: absolute;
+      top: 28px;
+      left: 56px;
+      right: 56px;
+      height: 3px;
+      border-radius: 999px;
+    }
+    .steps-line-bg { background: #d1e9f7; }
+    .steps-line-fg {
+      background: linear-gradient(90deg, var(--blue), var(--emerald));
+      width: 0%;
+      transition: width 1.1s ease-out;
+    }
+    .steps-line-fg.in { width: 100%; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+
+    .step { text-align: center; }
+
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 14px rgba(0,102,179,.30);
+      position: relative;
+      z-index: 2;
+    }
+
+    .step h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: .65rem; }
+    .step p { font-size: .9rem; color: var(--text-mid); line-height: 1.68; }
+
+    /* ============================================================
+       FRANJA DE CONFIANZA
+    ============================================================ */
+    .trust-strip {
+      background: var(--blue-dark);
+      padding: 3.5rem 1.5rem;
+    }
+    .trust-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .trust-item .trust-icon {
+      width: 52px; height: 52px;
+      margin: 0 auto 1rem;
+      background: rgba(16,185,129,.14);
+      border: 1px solid rgba(16,185,129,.30);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .trust-item .trust-text {
+      color: #e2e8f0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       FORMULARIO
+    ============================================================ */
+    .contact-sec {
+      background: var(--blue-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .contact-blob-1 { width: 350px; height: 350px; top: -80px; right: -80px; background: radial-gradient(circle, rgba(16,185,129,.12) 0%, transparent 70%); }
+    .contact-blob-2 { width: 280px; height: 280px; bottom: -60px; left: -60px; background: radial-gradient(circle, rgba(0,102,179,.18) 0%, transparent 70%); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-copy h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; color: #fff; margin-bottom: 1rem; line-height: 1.2; }
+    .contact-copy > p { color: #94a3b8; font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+
+    .contact-perks { list-style: none; display: flex; flex-direction: column; gap: .9rem; }
+    .contact-perks li { display: flex; align-items: center; gap: 10px; color: #cbd5e1; font-size: .9rem; }
+    .perk-check {
+      width: 22px; height: 22px;
+      background: rgba(16,185,129,.18);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #10b981; font-size: .78rem; font-weight: 800; flex-shrink: 0;
+    }
+
+    .form-card { background: var(--white); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--sh-xl); }
+    .form-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: .35rem; }
+    .form-card .form-desc { font-size: .875rem; color: var(--text-mid); margin-bottom: 1.75rem; }
+
+    .fg { margin-bottom: 1.2rem; }
+    .fg label { display: block; font-size: .855rem; font-weight: 600; color: var(--text); margin-bottom: .38rem; }
+    .fg input {
+      width: 100%;
+      padding: .72rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: .95rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .2s ease, box-shadow .2s ease;
+      font-family: var(--font);
+    }
+    .fg input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,102,179,.12); }
+    .fg input::placeholder { color: var(--text-soft); }
+
+    .auth-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 1rem;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .auth-box input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--emerald); flex-shrink: 0; margin-top: 3px; cursor: pointer; }
+    .auth-box label { font-size: .845rem; color: #374151; line-height: 1.5; cursor: pointer; }
+    .auth-box label strong { color: #065f46; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #059669, #047857);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font);
+      transition: all .25s ease;
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: linear-gradient(135deg, #047857, #065f46);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(5,150,105,.40);
+    }
+    .btn-submit:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+
+    .form-error {
+      display: none;
+      margin-top: 1rem;
+      padding: .75rem 1rem;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      font-size: .85rem;
+      color: #b91c1c;
+      text-align: center;
+    }
+
+    .form-legal { text-align: center; font-size: .73rem; color: var(--text-soft); margin-top: 1rem; line-height: 1.5; }
+    .form-legal a { color: var(--blue); text-decoration: underline; }
+
+    .form-success { display: none; text-align: center; padding: 2rem 1rem; }
+    .form-success .success-icon {
+      width: 64px; height: 64px;
+      background: var(--emerald-lt);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .form-success h4 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+    .form-success p { font-size: .9rem; color: var(--text-mid); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer { background: #050e1a; padding: 3rem 1.5rem 2rem; }
+    .footer-wrap { max-width: 1100px; margin: 0 auto; }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #1e293b;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 11px; }
+    .footer-brand img { height: 36px; width: auto; }
+    .footer-brand-name { font-size: .88rem; color: #e2e8f0; font-weight: 600; line-height: 1.3; }
+    .footer-brand-nit  { font-size: .73rem; color: #475569; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+    .footer-links a { color: #64748b; text-decoration: none; font-size: .8rem; transition: color .2s; }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-links .sep { color: #1e293b; font-size: .9rem; }
+    .footer-bottom { font-size: .78rem; color: #475569; text-align: center; }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE FIRST
+    ============================================================ */
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-trust { gap: 1rem; }
+      .form-card { padding: 1.75rem 1.25rem; }
+      .footer-top { flex-direction: column; gap: 1.25rem; }
+      .steps { grid-template-columns: 1fr; gap: 2.5rem; }
+      .steps-line-bg, .steps-line-fg { display: none; }
+      .trust-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .sec { padding: 3.5rem 1.1rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero-trust { flex-direction: column; align-items: center; gap: .75rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================================================
+       HERO — Sin menú de navegación. Pulso ECG en SVG ultraligero.
+  ================================================================ -->
+  <section class="hero" aria-label="Encabezado principal">
+    <div class="hero-blob-1" aria-hidden="true"></div>
+    <div class="hero-blob-2" aria-hidden="true"></div>
+
+    <!-- Líneas tipo ECG dibujadas con stroke-dashoffset — sin canvas, sin JS de animación -->
+    <svg class="hero-ecg" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
+      <path class="line-1" d="M0,420 L150,420 L175,360 L200,480 L225,420 L400,420 L425,300 L450,520 L475,420 L700,420 L725,380 L750,460 L775,420 L1000,420 L1025,340 L1050,500 L1075,420 L1200,420"
+        stroke-dasharray="2400" stroke-dashoffset="2400" style="animation: ecgDraw 5s linear infinite;" />
+      <path class="line-2" d="M0,560 L180,560 L205,520 L230,600 L255,560 L500,560 L525,480 L550,640 L575,560 L850,560 L875,500 L900,620 L925,560 L1200,560"
+        stroke-dasharray="2400" stroke-dashoffset="2400" style="animation: ecgDraw 6.5s linear infinite 1s;" />
+    </svg>
+
+    <div class="hero-inner">
+      <div class="hero-chip">
+        <span class="dot" aria-hidden="true"></span>
+        BCITA Soluciones · Automatización para Clínicas y Consultorios
+      </div>
+
+      <h1>
+        Su agenda se llena de huecos<br>
+        <em>y nadie en su consultorio puede evitarlo</em>
+      </h1>
+
+      <p class="hero-sub">
+        Automatizamos el agendamiento, el registro de pacientes y la comunicación de su consultorio para que su equipo se dedique a atender, no a perseguir confirmaciones por WhatsApp.
+      </p>
+
+      <a href="#contacto" class="btn-hero">
+        Quiero una consultoría gratuita
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+
+      <div class="hero-trust">
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Implementación en menos de 7 días</span>
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Sin cambiar sus equipos actuales</span>
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Consultoría inicial gratuita</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       LOS 3 DOLORES
+  ================================================================ -->
+  <section class="sec problems" id="problemas" aria-labelledby="prob-title">
+    <div class="wrap">
+
+      <div class="problems-head reveal">
+        <span class="badge">¿Le suena familiar?</span>
+        <h2 class="sec-title" id="prob-title">Los 3 problemas que enfrenta<br>la mayoría de consultorios</h2>
+        <p class="sec-sub">No es solo usted. Casi todos los consultorios privados pasan por esto todos los días.</p>
+      </div>
+
+      <div class="problems-grid">
+
+        <!-- Dolor 1 -->
+        <article class="prob-card reveal icon-pulse">
+          <div class="prob-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <line x1="9" y1="16" x2="13" y2="16"/>
+            </svg>
+          </div>
+          <h3>Agendamiento manual y pacientes que no llegan</h3>
+          <p>
+            Citas que se manejan por llamada o por el WhatsApp personal del médico o la recepcionista.
+            Sin confirmaciones ni recordatorios automáticos, los pacientes olvidan, no avisan,
+            y la agenda queda con huecos que ya no se pueden llenar a tiempo.
+          </p>
+          <div class="prob-quote">"De 20 citas semanales, puede perder 4 o 5 por ausentismo evitable."</div>
+        </article>
+
+        <!-- Dolor 2 -->
+        <article class="prob-card reveal reveal-d1 icon-pulse">
+          <div class="prob-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="9" y1="13" x2="15" y2="13"/>
+              <line x1="9" y1="17" x2="13" y2="17"/>
+            </svg>
+          </div>
+          <h3>Caos administrativo y datos dispersos</h3>
+          <p>
+            Carpetas físicas, hojas de Excel desactualizadas, anotaciones en papel que nadie transcribe a tiempo.
+            Cuando un paciente llama con una pregunta urgente, nadie puede responder con certeza sin
+            antes encontrar esa carpeta.
+          </p>
+          <div class="prob-quote">"Su recepcionista dedica horas semanales a tareas que deberían ser automáticas."</div>
+        </article>
+
+        <!-- Dolor 3 -->
+        <article class="prob-card reveal reveal-d2 icon-pulse">
+          <div class="prob-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="6" cy="6" r="2.5"/>
+              <circle cx="18" cy="6" r="2.5"/>
+              <circle cx="12" cy="18" r="2.5"/>
+              <line x1="8.2" y1="7.3" x2="10.5" y2="16"/>
+              <line x1="15.8" y1="7.3" x2="13.5" y2="16"/>
+            </svg>
+          </div>
+          <h3>Sistemas desconectados que duplican el trabajo</h3>
+          <p>
+            La agenda en un lado, los pagos en otro, WhatsApp por separado, sin que nada hable con nada.
+            Cada proceso requiere que alguien pase la información a mano de un sistema a otro,
+            generando errores y reprocesos innecesarios.
+          </p>
+          <div class="prob-quote">"Eso le quita tiempo a su equipo que debería estar dedicado a los pacientes."</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       LAS 3 SOLUCIONES
+  ================================================================ -->
+  <section class="sec solutions" id="soluciones" aria-labelledby="sol-title">
+    <div class="wrap">
+
+      <div class="solutions-head reveal">
+        <span class="badge">Lo que hacemos</span>
+        <h2 class="sec-title" id="sol-title">3 soluciones concretas<br>para su consultorio</h2>
+        <p class="sec-sub">No tocamos su práctica clínica. Automatizamos el negocio detrás del consultorio.</p>
+      </div>
+
+      <div class="sol-grid">
+
+        <!-- Solución 1 — destacada -->
+        <article class="sol-card featured reveal">
+          <span class="sol-badge">Más solicitado</span>
+          <div class="sol-icon emerald" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              <circle cx="9" cy="12" r="1" fill="#059669"/>
+              <circle cx="12" cy="12" r="1" fill="#059669"/>
+              <circle cx="15" cy="12" r="1" fill="#059669"/>
+            </svg>
+          </div>
+          <span class="sol-tag emerald">Solución 1</span>
+          <h3>Agenda automática que trabaja mientras usted consulta</h3>
+          <p>
+            Un sistema por WhatsApp recibe solicitudes de cita, consulta disponibilidad en tiempo real,
+            confirma al paciente automáticamente y envía recordatorio 2 horas antes. Usted recibe
+            un resumen diario de la agenda sin haber contestado un solo mensaje manualmente.
+          </p>
+          <ul class="sol-list">
+            <li>Confirmación automática de citas, de día y de noche</li>
+            <li>Recordatorio al paciente 2 horas antes de su consulta</li>
+            <li>Resumen diario de la agenda directo en su celular</li>
+            <li>Reducción promedio de ausentismo del 40%</li>
+          </ul>
+        </article>
+
+        <!-- Solución 2 -->
+        <article class="sol-card reveal reveal-d1">
+          <div class="sol-icon blue" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <polyline points="9 15 11 17 15 12"/>
+            </svg>
+          </div>
+          <span class="sol-tag blue">Solución 2</span>
+          <h3>Registro digital de pacientes sin papel ni Excel</h3>
+          <p>
+            Un formulario digital que el paciente diligencia desde su celular antes de llegar.
+            Los datos básicos de contacto y motivo de consulta quedan centralizados automáticamente.
+            Su recepcionista deja de transcribir y usted entra a consulta con la información lista.
+          </p>
+          <ul class="sol-list">
+            <li>El paciente llena sus datos antes de llegar al consultorio</li>
+            <li>Información centralizada, sin carpetas físicas</li>
+            <li>Cero transcripción manual para su equipo administrativo</li>
+            <li>Acceso inmediato a la información de contacto cuando la necesite</li>
+          </ul>
+        </article>
+
+        <!-- Solución 3 -->
+        <article class="sol-card reveal reveal-d2">
+          <div class="sol-icon teal" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </div>
+          <span class="sol-tag teal">Solución 3</span>
+          <h3>Sus sistemas conectados, su equipo enfocado en pacientes</h3>
+          <p>
+            Integramos su agenda, sus notificaciones y su registro de pagos en un solo flujo.
+            Cuando se agenda una cita, el sistema notifica, registra y hace seguimiento solo.
+            Su equipo deja de operar varias herramientas desconectadas.
+          </p>
+          <ul class="sol-list">
+            <li>Una sola fuente de información para todo su consultorio</li>
+            <li>Notificaciones automáticas sin intervención manual</li>
+            <li>Menos errores por digitación repetida</li>
+            <li>Su equipo dedicado a la atención, no a la operación</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       CÓMO FUNCIONA — 3 pasos con línea de progreso animada
+  ================================================================ -->
+  <section class="sec how" id="como-funciona" aria-labelledby="how-title">
+    <div class="wrap">
+
+      <div class="how-head reveal">
+        <span class="badge">El proceso</span>
+        <h2 class="sec-title" id="how-title">Así de simple es empezar</h2>
+        <p class="sec-sub">Tres pasos. Sin interrumpir la atención a sus pacientes.</p>
+      </div>
+
+      <div class="steps-track reveal">
+        <div class="steps-line-bg" aria-hidden="true"></div>
+        <div class="steps-line-fg" id="stepsLine" aria-hidden="true"></div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num" aria-hidden="true">1</div>
+            <h3>Conversamos y entendemos su operación actual</h3>
+            <p>Una llamada breve para conocer cómo maneja hoy sus citas, su agenda y la comunicación con sus pacientes.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num" aria-hidden="true">2</div>
+            <h3>Configuramos los flujos automáticos en menos de 5 días</h3>
+            <p>Implementamos la solución a la medida de su consultorio, sin que usted tenga que aprender nada técnico.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num" aria-hidden="true">3</div>
+            <h3>Su consultorio opera solo mientras usted atiende</h3>
+            <p>Usted y su equipo se dedican a los pacientes. El sistema se encarga de la agenda y el seguimiento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FRANJA DE CONFIANZA
+  ================================================================ -->
+  <section class="trust-strip" aria-label="Elementos de confianza">
+    <div class="trust-grid">
+
+      <div class="trust-item reveal">
+        <div class="trust-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <p class="trust-text">Implementación en menos de 7 días</p>
+      </div>
+
+      <div class="trust-item reveal reveal-d1">
+        <div class="trust-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </div>
+        <p class="trust-text">Sin cambiar los equipos que ya tiene</p>
+      </div>
+
+      <div class="trust-item reveal reveal-d2">
+        <div class="trust-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <p class="trust-text">Soporte incluido durante el primer mes</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FORMULARIO DE CONTACTO Y AUTORIZACIÓN WHATSAPP
+  ================================================================ -->
+  <section class="sec contact-sec" id="contacto" aria-labelledby="contact-title">
+    <div class="contact-blob contact-blob-1" aria-hidden="true"></div>
+    <div class="contact-blob contact-blob-2" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="contact-grid">
+
+        <div class="contact-copy reveal">
+          <h2 id="contact-title">Cuéntenos cómo funciona<br>su consultorio hoy</h2>
+          <p>
+            Le mostramos en una conversación breve cómo automatizar su agenda y su administración,
+            sin compromiso y sin tecnicismos.
+          </p>
+          <ul class="contact-perks">
+            <li><span class="perk-check" aria-hidden="true">✓</span>Respuesta en menos de 24 horas</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Consultoría inicial sin costo</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Implementación en menos de 7 días</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Sin contratos a largo plazo</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Soporte técnico incluido</li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-d2">
+          <div class="form-card">
+            <h3>Cuéntenos cómo funciona su consultorio hoy</h3>
+            <p class="form-desc">Llenamos esto en 2 minutos y le escribimos hoy mismo.</p>
+
+            <form id="contactForm" novalidate>
+              <div class="fg">
+                <label for="nombre">Nombre completo <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Dr. Andrés Pardo, Lic. María Camacho…"
+                  required
+                  autocomplete="name"
+                  minlength="2"
+                />
+              </div>
+
+              <div class="fg">
+                <label for="negocio">Nombre del consultorio o clínica <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input
+                  type="text"
+                  id="negocio"
+                  name="negocio"
+                  placeholder="Centro Médico Vida, Consultorio Odontológico Sonríe…"
+                  required
+                  minlength="2"
+                />
+              </div>
+
+              <div class="fg">
+                <label for="especialidad">Especialidad <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input
+                  type="text"
+                  id="especialidad"
+                  name="especialidad"
+                  placeholder="Odontología, psicología, medicina general…"
+                  required
+                  minlength="2"
+                />
+              </div>
+
+              <div class="fg">
+                <label for="whatsapp">Su número de WhatsApp <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input
+                  type="tel"
+                  id="whatsapp"
+                  name="whatsapp"
+                  placeholder="300 123 4567"
+                  required
+                  pattern="[\d\s\+\-]{7,15}"
+                  autocomplete="tel"
+                />
+              </div>
+
+              <!-- Campos ocultos — identifican la página de origen en SharePoint -->
+              <input type="hidden" name="sector"        value="Clínicas y Consultorios" />
+              <input type="hidden" name="pagina_origen"  value="/clinicas" />
+
+              <!-- Autorización explícita WhatsApp — OBLIGATORIA -->
+              <div class="auth-box">
+                <input
+                  type="checkbox"
+                  id="autoriza_whatsapp"
+                  name="autoriza_whatsapp"
+                  value="si"
+                  required
+                />
+                <label for="autoriza_whatsapp">
+                  <strong>Autorizo a BCITA</strong> contactarme por WhatsApp para agendar una consultoría gratuita. <em>(Requerido)</em>
+                </label>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Quiero una consultoría gratuita
+              </button>
+
+              <div class="form-error" id="formError">
+                Hubo un problema al enviar el formulario. Por favor intente de nuevo o escríbanos directamente al <strong>302 444 6047</strong>.
+              </div>
+
+              <p class="form-legal">
+                Respuesta en menos de 24 horas. Sin compromiso. Tratamos sus datos conforme a nuestra
+                <a href="/politica-datos/index.html" target="_blank" rel="noopener">Política de Tratamiento de Datos Personales</a>.
+              </p>
+            </form>
+
+            <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+              <div class="success-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <h4>¡Listo! Le contactamos hoy mismo</h4>
+              <p>Recibimos su solicitud. Un asesor de BCITA le escribirá por WhatsApp antes de que termine el día. Si prefiere, también puede escribirnos directamente al <strong>302 444 6047</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer aria-label="Pie de página">
+    <div class="footer-wrap">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <img src="/b-cita1.png" alt="BCITA Soluciones y Automatización" />
+          <div>
+            <div class="footer-brand-name">BCITA Soluciones y Automatización S.A.S.</div>
+            <div class="footer-brand-nit">NIT 902031908-7 · Fusagasugá, Cundinamarca</div>
+          </div>
+        </div>
+
+        <nav class="footer-links" aria-label="Enlaces del pie de página">
+          <a href="/politica-datos/index.html">Política de Datos</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="mailto:soluciones@bcita.com.co">soluciones@bcita.com.co</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="https://wa.me/573024446047" target="_blank" rel="noopener noreferrer">WhatsApp: 302 444 6047</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="/">Sitio principal</a>
+        </nav>
+
+      </div>
+
+      <p class="footer-bottom">
+        &copy; 2025 BCITA Soluciones y Automatización S.A.S. &nbsp;·&nbsp; Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ================================================================
+       JS — Scroll reveal + línea de progreso + envío a Power Automate
+       (menos de 50 líneas de lógica, sin librerías externas)
+  ================================================================ -->
+  <script>
+    // Animaciones al hacer scroll (incluye línea de progreso de los 3 pasos)
+    (function () {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.13 });
+
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      var line = document.getElementById('stepsLine');
+      if (line) {
+        var lineIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              line.classList.add('in');
+              lineIo.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        lineIo.observe(line);
+      }
+    })();
+
+    // Envío del formulario → Power Automate (JSON)
+    (function () {
+      var POWER_AUTOMATE_URL = 'https://default2788c22b48a84e06b329e8d0623d6b.17.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/dfc580603f0f4a749828e6f81fc18d8a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=iFmidZYEu7NN4XvlAWOqxki9_Zf3iVxp9JtRwEJDdY0';
+
+      var form    = document.getElementById('contactForm');
+      var btn     = form.querySelector('.btn-submit');
+      var btnText = btn.innerHTML;
+      var success = document.getElementById('formSuccess');
+      var error   = document.getElementById('formError');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        var payload = {
+          nombre:            document.getElementById('nombre').value.trim(),
+          negocio:           document.getElementById('negocio').value.trim(),
+          whatsapp:          document.getElementById('whatsapp').value.trim(),
+          interes:           document.getElementById('especialidad').value.trim(),
+          autoriza_whatsapp: document.getElementById('autoriza_whatsapp').checked,
+          sector:            form.querySelector('[name="sector"]').value,
+          pagina_origen:     form.querySelector('[name="pagina_origen"]').value
+        };
+
+        btn.disabled = true;
+        btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin .8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Enviando…';
+        error.style.display = 'none';
+
+        fetch(POWER_AUTOMATE_URL, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload)
+        })
+        .then(function (res) {
+          if (res.ok || res.status === 202) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+          } else {
+            throw new Error('HTTP ' + res.status);
+          }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.innerHTML = btnText;
+          error.style.display = 'block';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
