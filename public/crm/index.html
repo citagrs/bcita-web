@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRM dentro de tu Microsoft 365 | BCITA Soluciones</title>
+  <meta name="description" content="BCITA CRM vive dentro de tu Microsoft 365: sin servidores nuevos, sin mensualidad de hosting, con tus datos siempre en tu propio tenant. Pipeline visual, gestión de cuentas y seguimiento comercial." />
+  <meta name="keywords" content="CRM Microsoft 365, CRM SharePoint, gestión comercial Colombia, pipeline de ventas, CRM sin hosting, software ventas Colombia" />
+  <meta property="og:title" content="CRM dentro de tu Microsoft 365 | BCITA" />
+  <meta property="og:description" content="Pipeline visual, gestión de cuentas y seguimiento comercial, corriendo dentro del Microsoft 365 que tu empresa ya tiene." />
+  <meta property="og:locale" content="es_CO" />
+  <link rel="canonical" href="https://bcita.com.co/crm/" />
+  <link rel="icon" href="/b-cita1.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/b-cita1.png" />
+
+  <style>
+    /* ============================================================
+       RESET & VARIABLES — Sistema de diseño BCITA
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #0066B3;
+      --blue-dark:   #003862;
+      --blue-light:  #dbeafe;
+      --blue-mid:    #1e40af;
+      --emerald:     #059669;
+      --emerald-lt:  #d1fae5;
+      --emerald-dk:  #047857;
+      --orange:      #ea580c;
+      --orange-lt:   #fff7ed;
+      --teal:        #0d9488;
+      --teal-lt:     #ccfbf1;
+
+      --text:        #111827;
+      --text-mid:    #4B5563;
+      --text-soft:   #9CA3AF;
+      --bg:          #F9FAFB;
+      --white:       #ffffff;
+      --border:      #E5E7EB;
+
+      --sh-sm:  0 1px 3px rgba(0,0,0,.10), 0 1px 2px rgba(0,0,0,.06);
+      --sh-md:  0 4px 6px -1px rgba(0,0,0,.10), 0 2px 4px -1px rgba(0,0,0,.06);
+      --sh-lg:  0 10px 15px -3px rgba(0,0,0,.10), 0 4px 6px -2px rgba(0,0,0,.05);
+      --sh-xl:  0 20px 25px -5px rgba(0,0,0,.12), 0 10px 10px -5px rgba(0,0,0,.06);
+
+      --radius:    12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font: 'Segoe UI', Arial, Helvetica, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       ANIMACIONES
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1;   }
+      50%       { opacity: .35; }
+    }
+    @keyframes blob {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33%       { transform: translate(20px,-20px) scale(1.06); }
+      66%       { transform: translate(-15px,12px) scale(.95); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .55s ease-out, transform .55s ease-out;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .10s; }
+    .reveal-d2 { transition-delay: .20s; }
+    .reveal-d3 { transition-delay: .30s; }
+    .reveal-d4 { transition-delay: .40s; }
+    .reveal-d5 { transition-delay: .50s; }
+
+    /* ============================================================
+       UTILIDADES
+    ============================================================ */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .sec { padding: 5rem 1.5rem; }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: var(--blue-light);
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .sec-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.18;
+      color: var(--text);
+      margin-bottom: .75rem;
+    }
+    .sec-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 600px; }
+
+    /* ============================================================
+       NAVBAR — idéntica a /servicios
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229,231,235,.7);
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: .9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .navbar-logo img { height: 38px; width: auto; }
+    .navbar-links { display: flex; align-items: center; gap: 2rem; }
+    .navbar-links a { font-size: .9rem; font-weight: 500; color: var(--text-mid); transition: color .2s; }
+    .navbar-links a:hover,
+    .navbar-links a.active { color: var(--blue); }
+    .navbar-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: white !important;
+      padding: .55rem 1.1rem;
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 600;
+      transition: background .2s, transform .2s;
+    }
+    .navbar-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: 80px;
+      background: linear-gradient(145deg, #060d1a 0%, #003862 45%, #071e11 85%, #0a0a1a 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: .05;
+    }
+
+    .hero-blob-1, .hero-blob-2 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(75px);
+      pointer-events: none;
+    }
+    .hero-blob-1 {
+      width: 480px; height: 480px;
+      top: -130px; right: -100px;
+      background: radial-gradient(circle, rgba(0,102,179,.26) 0%, transparent 70%);
+      animation: blob 10s ease-in-out infinite;
+    }
+    .hero-blob-2 {
+      width: 380px; height: 380px;
+      bottom: -110px; left: -80px;
+      background: radial-gradient(circle, rgba(16,185,129,.18) 0%, transparent 70%);
+      animation: blob 12s ease-in-out infinite 2s;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeUp .9s ease both;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16,185,129,.14);
+      border: 1px solid rgba(16,185,129,.30);
+      color: #6ee7b7;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-chip .dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulseDot 2s ease-in-out infinite; flex-shrink: 0; }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.14;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: normal; color: #34d399; }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.3vw, 1.18rem);
+      color: #cbd5e1;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #059669, #047857);
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      font-size: 1.02rem;
+      font-weight: 700;
+      transition: all .25s ease;
+      box-shadow: 0 4px 16px rgba(5,150,105,.40);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(5,150,105,.50); }
+    .btn-primary svg { transition: transform .2s; }
+    .btn-primary:hover svg { transform: translateX(4px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255,255,255,.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      font-size: 1.02rem;
+      font-weight: 600;
+      transition: all .25s ease;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28); transform: translateY(-2px); }
+
+    .hero-trust { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .hero-trust-item { display: flex; align-items: center; gap: 7px; color: #94a3b8; font-size: .85rem; }
+    .hero-trust-item .dot { width: 7px; height: 7px; background: #10b981; border-radius: 50%; flex-shrink: 0; }
+
+    /* ============================================================
+       DIFERENCIADOR DESTACADO — "Vive dentro de tu Microsoft 365"
+    ============================================================ */
+    .feature-block {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #0a3d6e 100%);
+      padding: 5rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
+    .feature-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .feature-icon-wrap {
+      width: 88px; height: 88px;
+      border-radius: 22px;
+      background: rgba(16,185,129,.14);
+      border: 1px solid rgba(16,185,129,.30);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .feature-text .badge { background: rgba(16,185,129,.16); color: #6ee7b7; }
+    .feature-text h2 {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .feature-text p { font-size: 1rem; color: #94a3b8; line-height: 1.75; }
+
+    .feature-stats { display: flex; flex-direction: column; gap: 1rem; }
+    .feature-stat {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 1.1rem 1.3rem;
+    }
+    .feature-stat-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(16,185,129,.16);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .feature-stat-text { color: #e2e8f0; font-size: .92rem; font-weight: 600; line-height: 1.45; }
+    .feature-stat-text span { display: block; color: #64748b; font-size: .8rem; font-weight: 400; margin-top: 2px; }
+
+    /* ============================================================
+       MÓDULOS FUNCIONALES
+    ============================================================ */
+    .modules { background: var(--bg); }
+    .modules-head { text-align: center; margin-bottom: 3.5rem; }
+    .modules-head .sec-sub { margin: .5rem auto 0; }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .modules-grid .mod-card:nth-child(4),
+    .modules-grid .mod-card:nth-child(5) {
+      grid-column: span 1;
+    }
+
+    .mod-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+      transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+    }
+    .mod-card:hover { border-color: var(--blue); box-shadow: var(--sh-xl); transform: translateY(-4px); }
+
+    .mod-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+    }
+    .mod-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: .55rem; }
+    .mod-card p { font-size: .9rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* ============================================================
+       VENTAJAS DIFERENCIALES
+    ============================================================ */
+    .advantages { background: var(--white); }
+    .advantages-head { text-align: center; margin-bottom: 3.5rem; }
+    .advantages-head .sec-sub { margin: .5rem auto 0; }
+
+    .adv-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .adv-card {
+      display: flex;
+      gap: 1.1rem;
+      padding: 1.6rem;
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .adv-card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+    .adv-icon {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      background: var(--emerald-lt);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .adv-card h3 { font-size: .98rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+    .adv-card p { font-size: .87rem; color: var(--text-mid); line-height: 1.6; }
+
+    /* ============================================================
+       ROADMAP — "Próximamente"
+    ============================================================ */
+    .roadmap { background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%); }
+    .roadmap-head { text-align: center; margin-bottom: 3rem; }
+    .roadmap-head .sec-sub { margin: .5rem auto 0; }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .roadmap-card {
+      position: relative;
+      background: var(--white);
+      border: 2px dashed #93c5fd;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.6rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .roadmap-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .roadmap-card h3 { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: .3rem; }
+    .roadmap-card p { font-size: .84rem; color: var(--text-mid); line-height: 1.55; }
+    .roadmap-soon {
+      position: absolute;
+      top: -11px; right: 1rem;
+      background: var(--blue);
+      color: #fff;
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    /* ============================================================
+       CTA / FORMULARIO DEMO
+    ============================================================ */
+    .contact-sec { background: var(--blue-dark); position: relative; overflow: hidden; }
+    .contact-blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+    .contact-blob-1 { width: 350px; height: 350px; top: -80px; right: -80px; background: radial-gradient(circle, rgba(16,185,129,.12) 0%, transparent 70%); }
+    .contact-blob-2 { width: 280px; height: 280px; bottom: -60px; left: -60px; background: radial-gradient(circle, rgba(0,102,179,.18) 0%, transparent 70%); }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; position: relative; z-index: 2; }
+    .contact-copy h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; color: #fff; margin-bottom: 1rem; line-height: 1.2; }
+    .contact-copy > p { color: #94a3b8; font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+    .contact-perks { list-style: none; display: flex; flex-direction: column; gap: .9rem; }
+    .contact-perks li { display: flex; align-items: center; gap: 10px; color: #cbd5e1; font-size: .9rem; }
+    .perk-check {
+      width: 22px; height: 22px; background: rgba(16,185,129,.18); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #10b981; font-size: .78rem; font-weight: 800; flex-shrink: 0;
+    }
+
+    .form-card { background: var(--white); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--sh-xl); }
+    .form-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: .35rem; }
+    .form-card .form-desc { font-size: .875rem; color: var(--text-mid); margin-bottom: 1.75rem; }
+
+    .fg { margin-bottom: 1.2rem; }
+    .fg label { display: block; font-size: .855rem; font-weight: 600; color: var(--text); margin-bottom: .38rem; }
+    .fg input {
+      width: 100%; padding: .72rem 1rem; border: 2px solid var(--border); border-radius: 10px;
+      font-size: .95rem; color: var(--text); background: var(--white);
+      transition: border-color .2s ease, box-shadow .2s ease; font-family: var(--font);
+    }
+    .fg input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,102,179,.12); }
+    .fg input::placeholder { color: var(--text-soft); }
+
+    .auth-box {
+      display: flex; align-items: flex-start; gap: 11px; padding: 1rem;
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; margin-bottom: 1.5rem;
+    }
+    .auth-box input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--emerald); flex-shrink: 0; margin-top: 3px; cursor: pointer; }
+    .auth-box label { font-size: .845rem; color: #374151; line-height: 1.5; cursor: pointer; }
+    .auth-box label strong { color: #065f46; }
+
+    .btn-submit {
+      width: 100%; padding: 1rem; background: linear-gradient(135deg, #059669, #047857);
+      color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: var(--font); transition: all .25s ease;
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: linear-gradient(135deg, #047857, #065f46);
+      transform: translateY(-1px); box-shadow: 0 6px 18px rgba(5,150,105,.40);
+    }
+    .btn-submit:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+
+    .form-error {
+      display: none; margin-top: 1rem; padding: .75rem 1rem; background: #fef2f2;
+      border: 1px solid #fecaca; border-radius: 8px; font-size: .85rem; color: #b91c1c; text-align: center;
+    }
+    .form-legal { text-align: center; font-size: .73rem; color: var(--text-soft); margin-top: 1rem; line-height: 1.5; }
+    .form-legal a { color: var(--blue); text-decoration: underline; }
+
+    .form-success { display: none; text-align: center; padding: 2rem 1rem; }
+    .form-success .success-icon {
+      width: 64px; height: 64px; background: var(--emerald-lt); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+    }
+    .form-success h4 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+    .form-success p { font-size: .9rem; color: var(--text-mid); }
+
+    /* ============================================================
+       FOOTER — idéntico a /servicios
+    ============================================================ */
+    footer { background: #050e1a; padding: 2.5rem 1.5rem 2rem; }
+    .footer-wrap { max-width: 1160px; margin: 0 auto; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.25rem;
+      padding-bottom: 1.5rem; border-bottom: 1px solid #1e293b; margin-bottom: 1.25rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-brand img { height: 36px; width: auto; }
+    .footer-brand-name { font-size: .85rem; color: #e2e8f0; font-weight: 600; }
+    .footer-brand-nit  { font-size: .72rem; color: #475569; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+    .footer-links a { color: #64748b; font-size: .78rem; transition: color .2s; }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-sep { color: #1e293b; font-size: .9rem; }
+    .footer-bottom { font-size: .76rem; color: #475569; text-align: center; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .feature-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .modules-grid { grid-template-columns: repeat(2, 1fr); }
+      .adv-grid { grid-template-columns: 1fr; }
+      .roadmap-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .navbar-links { display: none; }
+      .modules-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 1.75rem 1.25rem; }
+      .footer-top { flex-direction: column; gap: 1.25rem; }
+    }
+
+    @media (max-width: 480px) {
+      .sec { padding: 3.5rem 1.1rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero-buttons { flex-direction: column; width: 100%; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .hero-trust { flex-direction: column; align-items: center; gap: .6rem; }
+      .feature-block { padding: 3.5rem 1.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================================================
+       NAVBAR — idéntica a /servicios
+  ================================================================ -->
+  <header class="navbar" aria-label="Navegación principal">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo" aria-label="Inicio BCITA">
+        <img src="/b-cita1.png" alt="BCITA Soluciones y Automatización" />
+      </a>
+      <nav class="navbar-links">
+        <a href="/servicios/index.html">Servicios</a>
+        <a href="/#resultados">Resultados</a>
+        <a href="/#contacto">Contacto</a>
+        <a href="https://beacons.ai/b_cita/mediakit" target="_blank" rel="noopener">Portafolio</a>
+      </nav>
+      <a href="https://wa.me/573142539496?text=Hola,%20quiero%20conocer%20el%20CRM%20de%20BCITA" target="_blank" rel="noopener" class="navbar-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Hablar con un asesor
+      </a>
+    </div>
+  </header>
+
+
+  <!-- ================================================================
+       HERO
+  ================================================================ -->
+  <section class="hero" aria-label="Encabezado del producto CRM">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-blob-1" aria-hidden="true"></div>
+    <div class="hero-blob-2" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-chip">
+        <span class="dot" aria-hidden="true"></span>
+        BCITA Soluciones · CRM en tu propio Microsoft 365
+      </div>
+
+      <h1>
+        Su equipo comercial está perdiendo<br>
+        <em>oportunidades que nadie está siguiendo</em>
+      </h1>
+
+      <p class="hero-sub">
+        BCITA CRM organiza su pipeline, sus cuentas y el seguimiento de su equipo de ventas — y vive dentro del Microsoft 365 que su empresa ya tiene contratado. Sin servidores nuevos, sin mensualidad de hosting.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#demo" class="btn-primary">
+          Solicitar demo gratuita
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <a href="#modulos" class="btn-secondary">
+          Ver cómo funciona
+        </a>
+      </div>
+
+      <div class="hero-trust">
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Implementación en menos de 5 días</span>
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Sin costo de hosting adicional</span>
+        <span class="hero-trust-item"><span class="dot" aria-hidden="true"></span>Sus datos en su propio Microsoft 365</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       DIFERENCIADOR DESTACADO
+  ================================================================ -->
+  <section class="feature-block" aria-label="Diferenciador principal">
+    <div class="feature-inner">
+
+      <div class="feature-text reveal">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9.5L12 3l9 6.5"/>
+            <path d="M5 10v9a1 1 0 001 1h12a1 1 0 001-1v-9"/>
+            <path d="M9 21V13h6v8"/>
+          </svg>
+        </div>
+        <span class="badge">La diferencia clave</span>
+        <h2>Vive dentro de su Microsoft 365</h2>
+        <p>
+          BCITA CRM no es un software externo más. Se instala directamente en el SharePoint que su empresa ya usa todos los días. Sus datos nunca salen de su organización: no hay servidores adicionales, no hay bases de datos externas, no hay un nuevo proveedor guardando su información comercial en otro lugar.
+        </p>
+      </div>
+
+      <div class="feature-stats reveal reveal-d2">
+        <div class="feature-stat">
+          <div class="feature-stat-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div class="feature-stat-text">Cero servidores adicionales<span>Todo corre en la infraestructura que ya tiene</span></div>
+        </div>
+        <div class="feature-stat">
+          <div class="feature-stat-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div class="feature-stat-text">Cero bases de datos externas<span>Su información comercial no sale de su organización</span></div>
+        </div>
+        <div class="feature-stat">
+          <div class="feature-stat-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div class="feature-stat-text">Usa la licencia que ya tiene<span>Sin cargo adicional de infraestructura por encima de Microsoft 365</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       MÓDULOS FUNCIONALES
+  ================================================================ -->
+  <section class="sec modules" id="modulos" aria-labelledby="mod-title">
+    <div class="wrap">
+
+      <div class="modules-head reveal">
+        <span class="badge">Qué incluye</span>
+        <h2 class="sec-title" id="mod-title">Todo lo que su equipo comercial necesita</h2>
+        <p class="sec-sub">Cinco módulos pensados para que cada persona vea exactamente lo que le corresponde.</p>
+      </div>
+
+      <div class="modules-grid">
+
+        <article class="mod-card reveal">
+          <div class="mod-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/>
+            </svg>
+          </div>
+          <h3>Dashboard</h3>
+          <p>Vista general del negocio: pipeline de ventas, cuentas activas, actividades pendientes y registro rápido. Cada usuario ve lo que le corresponde según su rol.</p>
+        </article>
+
+        <article class="mod-card reveal reveal-d1">
+          <div class="mod-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>
+            </svg>
+          </div>
+          <h3>Gestión de Cuentas</h3>
+          <p>Ficha completa de cada cliente o empresa: información, historial de interacciones, oportunidades asociadas y actividades. Vista en lista o tablero visual.</p>
+        </article>
+
+        <article class="mod-card reveal reveal-d2">
+          <div class="mod-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
+            </svg>
+          </div>
+          <h3>Pipeline de Oportunidades</h3>
+          <p>Embudo de ventas en 6 etapas con tablero visual de arrastrar y soltar. Cada oportunidad con su seguimiento, valor estimado y responsable. El líder ve todo el equipo, el vendedor solo lo suyo.</p>
+        </article>
+
+        <article class="mod-card reveal reveal-d3">
+          <div class="mod-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>Actividades y Seguimiento</h3>
+          <p>Registro de llamadas, reuniones y tareas con filtros por fecha y responsable. Nunca más un cliente sin seguimiento por olvido.</p>
+        </article>
+
+        <article class="mod-card reveal reveal-d4">
+          <div class="mod-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Configuración y Roles</h3>
+          <p>Tres niveles de acceso: Administrador (visión total), Líder (gestiona su equipo) y Vendedor (solo sus registros). Sin configuración técnica — el administrador asigna roles desde la misma aplicación.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       VENTAJAS DIFERENCIALES
+  ================================================================ -->
+  <section class="sec advantages" aria-labelledby="adv-title">
+    <div class="wrap">
+
+      <div class="advantages-head reveal">
+        <span class="badge">Por qué elegirlo</span>
+        <h2 class="sec-title" id="adv-title">Más razones para decidirse</h2>
+        <p class="sec-sub">Pensado para que su empresa lo adopte rápido y sin fricción.</p>
+      </div>
+
+      <div class="adv-grid">
+
+        <div class="adv-card reveal">
+          <div class="adv-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <h3>Sin costo de hosting</h3>
+            <p>Otras soluciones cobran mensualidad por usuario o por almacenamiento. BCITA CRM usa la licencia de Microsoft 365 que ya tiene — sin cargo adicional de infraestructura.</p>
+          </div>
+        </div>
+
+        <div class="adv-card reveal reveal-d1">
+          <div class="adv-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <div>
+            <h3>Personalizable sin tocar código</h3>
+            <p>Colores, tipografía y marca de su empresa se configuran desde un panel visual. Queda con la imagen corporativa de su negocio sin intervención técnica.</p>
+          </div>
+        </div>
+
+        <div class="adv-card reveal reveal-d2">
+          <div class="adv-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h3>Funciona también en Microsoft Teams</h3>
+            <p>Su equipo accede al CRM directamente desde Teams como app o pestaña — sin salir de la herramienta que ya usan a diario.</p>
+          </div>
+        </div>
+
+        <div class="adv-card reveal reveal-d3">
+          <div class="adv-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h3>Implementación en menos de 5 días</h3>
+            <p>Sin migraciones complejas, sin integraciones costosas. Se instala en su entorno, se configuran los módulos y su equipo ya puede operar.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       ROADMAP — "Próximamente"
+  ================================================================ -->
+  <section class="sec roadmap" aria-labelledby="road-title">
+    <div class="wrap">
+
+      <div class="roadmap-head reveal">
+        <span class="badge">En camino</span>
+        <h2 class="sec-title" id="road-title">Lo que viene</h2>
+        <p class="sec-sub">BCITA CRM sigue creciendo. Esto es lo que estamos construyendo para usted.</p>
+      </div>
+
+      <div class="roadmap-grid">
+
+        <div class="roadmap-card reveal">
+          <span class="roadmap-soon">Próximamente</span>
+          <div class="roadmap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <h3>Notificaciones automáticas por correo</h3>
+            <p>Aviso automático cuando una oportunidad lleva varios días sin movimiento, para que ningún negocio se enfríe por olvido.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-card reveal reveal-d1">
+          <span class="roadmap-soon">Próximamente</span>
+          <div class="roadmap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div>
+            <h3>Recordatorios automáticos por WhatsApp</h3>
+            <p>Seguimiento a clientes y prospectos directamente por WhatsApp, sin que su equipo tenga que escribir manualmente cada recordatorio.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-card reveal reveal-d2">
+          <span class="roadmap-soon">Próximamente</span>
+          <div class="roadmap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div>
+            <h3>Reportes de conversión por vendedor</h3>
+            <p>Visibilidad clara de quién está convirtiendo más oportunidades en ventas reales, para tomar mejores decisiones de equipo.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-card reveal reveal-d3">
+          <span class="roadmap-soon">Próximamente</span>
+          <div class="roadmap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <div>
+            <h3>Integración con Power BI</h3>
+            <p>Tableros ejecutivos conectados directamente con la información de su CRM, para una vista completa del negocio en un solo lugar.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FORMULARIO DE DEMO Y AUTORIZACIÓN WHATSAPP
+  ================================================================ -->
+  <section class="sec contact-sec" id="demo" aria-labelledby="contact-title">
+    <div class="contact-blob contact-blob-1" aria-hidden="true"></div>
+    <div class="contact-blob contact-blob-2" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="contact-grid">
+
+        <div class="contact-copy reveal">
+          <h2 id="contact-title">Vea el CRM funcionando<br>dentro de su propio Microsoft 365</h2>
+          <p>
+            En una demo de 20 minutos le mostramos cómo se vería el CRM con su equipo, sus cuentas y su proceso de ventas. Sin compromiso.
+          </p>
+          <ul class="contact-perks">
+            <li><span class="perk-check" aria-hidden="true">✓</span>Respuesta en menos de 24 horas</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Demo inicial sin costo</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Implementación en menos de 5 días</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Sus datos en su propio Microsoft 365</li>
+            <li><span class="perk-check" aria-hidden="true">✓</span>Soporte técnico incluido</li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-d2">
+          <div class="form-card">
+            <h3>Solicite su demo gratuita</h3>
+            <p class="form-desc">Llenamos esto en 2 minutos y le escribimos hoy mismo.</p>
+
+            <form id="contactForm" novalidate>
+              <div class="fg">
+                <label for="nombre">Nombre completo <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input type="text" id="nombre" name="nombre" placeholder="Su nombre completo" required autocomplete="name" minlength="2" />
+              </div>
+
+              <div class="fg">
+                <label for="negocio">Nombre de la empresa <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input type="text" id="negocio" name="negocio" placeholder="Nombre de su empresa" required minlength="2" />
+              </div>
+
+              <div class="fg">
+                <label for="equipo">Tamaño de su equipo comercial <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input type="text" id="equipo" name="equipo" placeholder="Ej. 5 vendedores, 1 líder…" required minlength="1" />
+              </div>
+
+              <div class="fg">
+                <label for="whatsapp">Su número de WhatsApp <span aria-hidden="true" style="color:#ef4444">*</span></label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="300 123 4567" required pattern="[\d\s\+\-]{7,15}" autocomplete="tel" />
+              </div>
+
+              <!-- Campos ocultos — identifican la página de origen en SharePoint -->
+              <input type="hidden" name="sector"       value="CRM" />
+              <input type="hidden" name="pagina_origen" value="/crm" />
+
+              <!-- Autorización explícita WhatsApp — OBLIGATORIA -->
+              <div class="auth-box">
+                <input type="checkbox" id="autoriza_whatsapp" name="autoriza_whatsapp" value="si" required />
+                <label for="autoriza_whatsapp">
+                  <strong>Autorizo a BCITA</strong> contactarme por WhatsApp para coordinar mi demo gratuita. <em>(Requerido)</em>
+                </label>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Solicitar demo gratuita
+              </button>
+
+              <div class="form-error" id="formError">
+                Hubo un problema al enviar el formulario. Por favor intente de nuevo o escríbanos directamente al <strong>314 253 9496</strong>.
+              </div>
+
+              <p class="form-legal">
+                Respuesta en menos de 24 horas. Sin compromiso. Tratamos sus datos conforme a nuestra
+                <a href="/politica-datos/index.html" target="_blank" rel="noopener">Política de Tratamiento de Datos Personales</a>.
+              </p>
+            </form>
+
+            <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+              <div class="success-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <h4>¡Listo! Le contactamos hoy mismo</h4>
+              <p>Recibimos su solicitud. Un asesor de BCITA le escribirá por WhatsApp para coordinar su demo. Si prefiere, también puede escribirnos directamente al <strong>314 253 9496</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FOOTER — idéntico a /servicios
+  ================================================================ -->
+  <footer aria-label="Pie de página">
+    <div class="footer-wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/b-cita1.png" alt="BCITA Soluciones y Automatización" />
+          <div>
+            <div class="footer-brand-name">BCITA Soluciones y Automatización S.A.S.</div>
+            <div class="footer-brand-nit">NIT 902031908-7 · Colombia</div>
+          </div>
+        </div>
+        <nav class="footer-links" aria-label="Enlaces del pie de página">
+          <a href="/politica-datos/index.html">Política de Datos</a>
+          <span class="footer-sep" aria-hidden="true">·</span>
+          <a href="mailto:soluciones@bcita.com.co">soluciones@bcita.com.co</a>
+          <span class="footer-sep" aria-hidden="true">·</span>
+          <a href="https://wa.me/573142539496" target="_blank" rel="noopener">314 253 9496</a>
+          <span class="footer-sep" aria-hidden="true">·</span>
+          <a href="/">Inicio</a>
+        </nav>
+      </div>
+      <p class="footer-bottom">
+        &copy; 2025 BCITA Soluciones y Automatización S.A.S. &nbsp;·&nbsp; Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ================================================================
+       JS — Scroll reveal + envío a Power Automate
+  ================================================================ -->
+  <script>
+    (function () {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    })();
+
+    (function () {
+      var POWER_AUTOMATE_URL = 'https://default2788c22b48a84e06b329e8d0623d6b.17.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/dfc580603f0f4a749828e6f81fc18d8a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=iFmidZYEu7NN4XvlAWOqxki9_Zf3iVxp9JtRwEJDdY0';
+
+      var form    = document.getElementById('contactForm');
+      var btn     = form.querySelector('.btn-submit');
+      var btnText = btn.innerHTML;
+      var success = document.getElementById('formSuccess');
+      var error   = document.getElementById('formError');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        var payload = {
+          nombre:            document.getElementById('nombre').value.trim(),
+          negocio:           document.getElementById('negocio').value.trim(),
+          whatsapp:          document.getElementById('whatsapp').value.trim(),
+          interes:           document.getElementById('equipo').value.trim(),
+          autoriza_whatsapp: document.getElementById('autoriza_whatsapp').checked,
+          sector:            form.querySelector('[name="sector"]').value,
+          pagina_origen:     form.querySelector('[name="pagina_origen"]').value
+        };
+
+        btn.disabled = true;
+        btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin .8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Enviando…';
+        error.style.display = 'none';
+
+        fetch(POWER_AUTOMATE_URL, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload)
+        })
+        .then(function (res) {
+          if (res.ok || res.status === 202) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+          } else {
+            throw new Error('HTTP ' + res.status);
+          }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.innerHTML = btnText;
+          error.style.display = 'block';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
