@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <header className="w-full fixed top-0 left-0 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        
+
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -29,23 +29,17 @@ export default function Navbar() {
           <li><a href="#servicios" className="hover:text-[#0066B3]">Servicios</a></li>
           <li><a href="#resultados" className="hover:text-[#0066B3]">Resultados</a></li>
           <li><a href="#contacto" className="hover:text-[#0066B3]">Contacto</a></li>
-          <li>
-            <a 
-              href="/servicios/index.html"
-              className="hover:text-[#0066B3]"
-            >
-              Portafolio de Servicios
-            </a>
-          </li>
-
+          <li><a href="/servicios/index.html" className="hover:text-[#0066B3]">Soluciones</a></li>
         </ul>
 
         {/* Botón CTA */}
         <a
-          href="mailto:soluciones@bcita.com.co"
+          href="https://wa.me/573142539496?text=Hola,%20quiero%20hablar%20con%20un%20asesor"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden md:block px-5 py-2 bg-[#0066B3] text-white rounded-full hover:bg-[#003862] transition"
         >
-          Escríbenos
+          Hablar con un asesor
         </a>
 
         {/* Mobile menu button */}
@@ -62,19 +56,20 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t border-gray-200 px-6 py-4">
           <ul className="flex flex-col gap-4 text-gray-700 font-medium">
             <li><a href="#servicios" onClick={() => setOpen(false)}>Servicios</a></li>
-            <li><a href="#por-que" onClick={() => setOpen(false)}>¿Por qué B-cita?</a></li>
+            <li><a href="#resultados" onClick={() => setOpen(false)}>Resultados</a></li>
             <li><a href="#contacto" onClick={() => setOpen(false)}>Contacto</a></li>
+            <li><a href="/servicios/index.html" onClick={() => setOpen(false)}>Soluciones</a></li>
             <li>
               <a
-                href="https://beacons.ai/b_cita/mediakit"
+                href="https://wa.me/573142539496?text=Hola,%20quiero%20hablar%20con%20un%20asesor"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
+                className="inline-block px-4 py-2 bg-[#0066B3] text-white rounded-full"
               >
-    Portafolio de Servicios
-  </a>
-</li>
-
+                Hablar con un asesor
+              </a>
+            </li>
           </ul>
         </div>
       )}
