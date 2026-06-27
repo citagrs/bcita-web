@@ -18,6 +18,7 @@ export default function Navbar() {
               width={140}
               height={140}
               priority
+              style={{ height: "38px", width: "auto" }}
             />
           </Link>
 
@@ -92,10 +93,6 @@ export default function Navbar() {
         .navbar-logo {
           display: flex;
           align-items: center;
-        }
-        .navbar-logo :global(img) {
-          height: 38px;
-          width: auto;
         }
         .navbar-links {
           display: flex;
