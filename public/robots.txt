@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bcita.com.co/sitemap.xml

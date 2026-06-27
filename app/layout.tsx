@@ -22,7 +22,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "B-Cita Soluciones y Automatización",
   description:
-    "Automatización empresarial, Inteligencia Artificial, Power Platform y soluciones low-code para empresas en Colombia.",
+    "BCITA Soluciones y Automatización: páginas web, CRM, automatización de procesos y prospección B2B para empresas en Colombia. Fusagasugá, Cundinamarca.",
+  alternates: {
+    canonical: "https://bcita.com.co/",
+  },
 };
 
 export default function RootLayout({

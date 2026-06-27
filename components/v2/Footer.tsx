@@ -80,9 +80,13 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-500 space-y-2">
-          <p>
-            <a href="/politica-datos/index.html" className="underline hover:text-gray-300 transition text-sm">
+          <p className="text-sm space-x-2">
+            <a href="/politica-datos/index.html" className="underline hover:text-gray-300 transition">
               Política de Tratamiento de Datos Personales
+            </a>
+            <span aria-hidden="true">·</span>
+            <a href="/sitemap.xml" className="underline hover:text-gray-300 transition">
+              Mapa del sitio
             </a>
           </p>
           <p>© 2026 B-cita Soluciones y Automatización. Todos los derechos reservados.</p>
