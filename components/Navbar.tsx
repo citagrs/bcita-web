@@ -26,7 +26,7 @@ export default function Navbar() {
             <a href="#servicios">Servicios</a>
             <a href="#resultados">Resultados</a>
             <a href="#contacto">Contacto</a>
-            <a href="/servicios/index.html">Soluciones</a>
+            <a href="/servicios">Soluciones</a>
           </nav>
 
           <a
@@ -55,7 +55,7 @@ export default function Navbar() {
             <a href="#servicios" onClick={() => setOpen(false)}>Servicios</a>
             <a href="#resultados" onClick={() => setOpen(false)}>Resultados</a>
             <a href="#contacto" onClick={() => setOpen(false)}>Contacto</a>
-            <a href="/servicios/index.html" onClick={() => setOpen(false)}>Soluciones</a>
+            <a href="/servicios" onClick={() => setOpen(false)}>Soluciones</a>
             <a
               href="https://wa.me/573142539496?text=Hola,%20quiero%20hablar%20con%20un%20asesor"
               target="_blank"

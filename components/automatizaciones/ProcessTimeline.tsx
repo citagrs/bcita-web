@@ -112,11 +112,12 @@ export default function ProcessTimeline() {
           background: linear-gradient(180deg, #0066b3, #059669);
           border-radius: 2px;
         }
-        .tl-item {
+        :global(.tl-item) {
           position: relative;
           display: flex;
           gap: 1.3rem;
           align-items: flex-start;
+          list-style: none;
         }
         .tl-marker {
           position: relative;

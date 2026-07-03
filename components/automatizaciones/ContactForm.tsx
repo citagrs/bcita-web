@@ -168,7 +168,7 @@ export default function ContactForm() {
 
                 <p className="cta-legal">
                   Tus datos se tratan conforme a nuestra{" "}
-                  <a href="/politica-datos/index.html" target="_blank" rel="noopener">
+                  <a href="/politica-datos" target="_blank" rel="noopener">
                     Política de Tratamiento de Datos Personales
                   </a>
                   .

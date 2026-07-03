@@ -81,7 +81,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-500 space-y-2">
           <p className="text-sm space-x-2">
-            <a href="/politica-datos/index.html" className="underline hover:text-gray-300 transition">
+            <a href="/politica-datos" className="underline hover:text-gray-300 transition">
               Política de Tratamiento de Datos Personales
             </a>
             <span aria-hidden="true">·</span>
