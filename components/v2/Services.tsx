@@ -1,5 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { Zap, Smartphone, Brain, ArrowRight } from 'lucide-react';
 
 const services = [
@@ -8,6 +9,7 @@ const services = [
     title: 'Automatización de procesos',
     description: 'Eliminamos tareas repetitivas como registros, correos, aprobaciones y reportes.',
     color: 'blue',
+    href: '/automatizaciones',
   },
   {
     icon: Smartphone,
@@ -87,13 +89,23 @@ export default function Services() {
                   {service.description}
                 </p>
 
-                <button
-                  onClick={() => handleServiceClick(service.title)}
-                  className="group text-blue-600 font-medium flex items-center gap-2 hover:gap-3 transition-all duration-200"
-                >
-                  Quiero este servicio
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                {service.href ? (
+                  <Link
+                    href={service.href}
+                    className="group text-blue-600 font-medium flex items-center gap-2 hover:gap-3 transition-all duration-200"
+                  >
+                    Quiero este servicio
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => handleServiceClick(service.title)}
+                    className="group text-blue-600 font-medium flex items-center gap-2 hover:gap-3 transition-all duration-200"
+                  >
+                    Quiero este servicio
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                )}
               </motion.div>
             );
           })}

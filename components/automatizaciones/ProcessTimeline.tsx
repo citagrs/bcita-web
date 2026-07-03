@@ -94,7 +94,7 @@ export default function ProcessTimeline() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         .tl-line {
           position: absolute;
           left: 27px;
@@ -112,7 +112,7 @@ export default function ProcessTimeline() {
           background: linear-gradient(180deg, #0066b3, #059669);
           border-radius: 2px;
         }
-        :global(.tl-item) {
+        .tl-item {
           position: relative;
           display: flex;
           gap: 1.3rem;

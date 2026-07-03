@@ -114,7 +114,7 @@ export default function Capabilities() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         .cap {
           position: relative;
           display: flex;

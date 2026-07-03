@@ -148,7 +148,7 @@ export default function FlowHero() {
         </motion.div>
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         .flow-hero {
           position: relative;
           overflow: hidden;
